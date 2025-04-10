@@ -7,7 +7,7 @@ body {
     /* Set line height to 1.5 times the font size
     and use the OS’s UI font as the website font */
     font: 100%/1.5 system-ui;
-    max-width: 125ch;
+    max-width: 100ch;
     margin-left: auto;
     margin-right: auto;
     padding-left: 10ch;
@@ -31,12 +31,17 @@ nav a {
     padding: 0.4em;
 }
 
-nav a:hover {
-    border-bottom: 0.2em solid var(--color-accent);
-    background-color: oklch(from var(--color-accent) 95% 5% h)
+@keyframes nav-hover {
+    from {background-color: transparent}
+    to {background-color: oklch(from var(--color-accent) 95% 5% h)}
 }
 
-a.current {
+nav a:hover {
+    border-bottom: 0.2em solid var(--color-accent);
+    animation: nav-hover 0.5s ease-out forwards
+}
+
+.current {
     border-bottom: 0.2em solid oklch(80% 3% 200);
 }
 
@@ -54,7 +59,7 @@ form label {
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
     gap: 1em;
-    padding: 0.4em
+    padding: 0.4em;
 }
 
 form button {
@@ -64,6 +69,40 @@ form button {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr))
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
 }
 
+div article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+    gap: 1em;
+    padding: 0.4em;
+}
+
+article h2 {
+    margin: 0;
+}
+
+article p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 400%
+}
+
+h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h2 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance;
+}
