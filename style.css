@@ -1,6 +1,7 @@
 :root {
     --color-accent: oklch(0.81 0.0954 267.19);
     accent-color: var(--color-accent);
+    color-scheme: light dark;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 
 nav {
     display: flex;
-    border-bottom: 1px solid oklch(80% 3% 200);
+    border-bottom: 1px solid oklch(50% 10% 200 / 40%);
 }
 
 nav ul, nav li {
@@ -31,18 +32,13 @@ nav a {
     padding: 0.4em;
 }
 
-@keyframes nav-hover {
-    from {background-color: transparent}
-    to {background-color: oklch(from var(--color-accent) 95% 5% h)}
-}
-
 nav a:hover {
     border-bottom: 0.2em solid var(--color-accent);
-    animation: nav-hover 0.5s ease-out forwards
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 .current {
-    border-bottom: 0.2em solid oklch(80% 3% 200);
+    border-bottom: 0.2em solid oklch(50% 10% 200 / 40%);
 }
 
 form {
@@ -104,4 +100,12 @@ h2 a:hover {
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: balance;
+}
+
+label.color-scheme {
+    font-family: inherit;
+    font-size: 85%;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }
