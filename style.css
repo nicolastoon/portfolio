@@ -64,30 +64,43 @@ form button {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
+    padding: 2em;
+    box-shadow: 0 0 4px lightslategray;
+    border-radius: 10px;
 }
 
-div article {
+.projects article {
     display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 5;
+    grid-template-columns: 15em 1fr;
     gap: 1em;
-    padding: 0.4em;
+    padding: 0.6em;
+    margin: 0.6em;
+    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
+    box-shadow: 0 0 4px lightslategray;
+    border-radius: 10px;
 }
 
-article h2 {
-    margin: 0;
+.projects article img {
+    border-radius: 10px;
 }
 
-article p {
-    margin: 0;
+.projects article h2 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    font-size: 20px;
+}
+
+.projects article p {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
 }
 
 h1 {
     font-size: 400%
 }
 
-h2 a {
+.projects a {
     text-decoration: none;
     color: inherit;
 }
@@ -99,7 +112,7 @@ h2 a:hover {
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
-    text-wrap: balance;
+    text-wrap: pretty;
 }
 
 label.color-scheme {
