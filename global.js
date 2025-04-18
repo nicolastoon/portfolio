@@ -41,18 +41,17 @@ document.body.insertAdjacentHTML(
     <label class="color-scheme">
         theme:
         <select>
-            <option>${default_option} (system default)</option>
-            <option>${secondary}</option>
+            <option value='${default_option}'>${default_option} (system default)</option>
+            <option value='${secondary}'>${secondary}</option>
         </select>
     </label>`,
 );
 
 let select = document.querySelector('select');
 select.addEventListener('input', function (event) {
-    let theme = event.target.value.startsWith(default_option) ? default_option : secondary;
-    console.log('color scheme changed to', theme);
-    document.documentElement.style.setProperty('color-scheme', theme);
-    localStorage.colorScheme = theme;
+    console.log('color scheme changed to', event.target.value);
+    document.documentElement.style.setProperty('color-scheme', event.target.value);
+    localStorage.colorScheme = event.target.value;
 });
 if (localStorage.colorScheme) {
     document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
