@@ -1,4 +1,4 @@
-console.log('ITS ALIVE!')
+console.log('ITS ALIVE!');
 
 function $$(selector, context = document) {
     return Array.from(context.querySelectorAll(selector))
@@ -58,5 +58,33 @@ if (localStorage.colorScheme) {
     select.value = localStorage.colorScheme;
 }
 
+export async function fetchJSON(url) {
+    try {
+        // Fetch the JSON file from the given URL
+        const response = await fetch(url);
+        console.log('hey!');
+        if (!response.ok) {
+            throw new Error(`Failed to fetch projects: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data;
+    } 
+    catch (error) {
+        console.error('Error fetching or parsing JSON data:', error);
+    }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+    containerElement.innerHTML = '';
+    for (let i = 0; i < projects.length; i++) {
+        const project = projects[i];
+        const article = document.createElement('article');
+        article.innerHTML = `
+        <h3>${project.title}</h3>
+        <img src="${project.image}" alt="${project.title}">
+        <p>${project.description}</p>`;
+        containerElement.appendChild(article);
+    }
+}
 
 
