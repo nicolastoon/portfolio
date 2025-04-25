@@ -81,7 +81,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         const article = document.createElement('article');
 
         const image = project.image
-        const image_url = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? `${image}` : `portfolio${image}`;
+        const image_url = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? `${image}` : `/portfolio${image}`;
 
         article.innerHTML = `
         <${headingLevel}>${project.title}</${headingLevel}>
