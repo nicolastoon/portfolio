@@ -109,3 +109,18 @@ label.color-scheme {
     top: 1rem;
     right: 1rem;
 }
+
+#profile-stats dl {
+    display: grid;
+}
+
+#profile-stats dt {
+    grid-row: 1;
+    font-size: 14px;
+}
+
+#profile-stats dd {
+    grid-row: 2;
+    margin: 0;
+    font-size: 20px;
+}
