@@ -2,19 +2,19 @@
     {
         "title": "Classifying Benign and Malignant Tumors",
         "year": "2025",
-        "image": "/images/breast_tumor.png",
+        "image": "images/breast_tumor.png",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos repellendus dolores, perferendis, a sit, nostrum eos amet esse eaque voluptatibus sed libero asperiores magni porro corporis velit totam quo suscipit!"
     },
     {
         "title": "Analyzing the Significance of Tags in Online Recipes",
         "year": "2025",
-        "image": "/images/food.jpg",
+        "image": "images/food.jpg",
         "description": "Aspernatur temporibus reiciendis maxime deserunt voluptas pariatur quaerat doloremque ipsam, quos nesciunt facilis sint nihil voluptate laborum? Dicta, beatae. Dolor inventore optio ex nisi officia, porro quidem? Quam, ducimus libero."
     },
     {
         "title": "The Impact Siblings Have on Academic Motivation in Asian-American Adolescents",
         "year": "2023",
-        "image": "/images/siblings.jpg",
+        "image": "images/siblings.jpg",
         "description": "Tempore aut blanditiis illo culpa rem omnis numquam laborum aspernatur molestias, aperiam voluptatem rerum, accusamus reprehenderit dicta eos maiores doloribus animi, possimus repudiandae? Quas laborum sed vitae vero atque harum."
     },
     {

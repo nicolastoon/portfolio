@@ -80,8 +80,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         const project = projects[i];
         const article = document.createElement('article');
 
-        const image = project.image
-        const image_url = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? `${image}` : `/portfolio${image}`;
+        const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? `/` : `/portfolio`;
+        let image_url = !project.image.startsWith('http') ? BASE_PATH + project.image : project.image;
 
         article.innerHTML = `
         <${headingLevel}>${project.title}</${headingLevel}>
