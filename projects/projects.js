@@ -7,7 +7,6 @@ renderProjects(projects, projectsContainer, 'h2');
 
 const projectsTitle = document.querySelector('h1');
 projectsTitle.innerText = `${projects.length} projects!`;
-
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
 // let rolledData = d3.rollups(
@@ -87,10 +86,12 @@ function renderPieChart(projectsGiven) {
                     filteredProjects = setQuery(searchInput.value, filteredProjects);
                 }
                 if (selectedIndex === -1) {
-                    renderProjects(filteredProjects, projectsContainer, 'h2'); 
+                    renderProjects(filteredProjects, projectsContainer, 'h2');
+                    projectsTitle.innerText = `${filteredProjects.length} projects!`; 
                 } else {
-                    let doubleFiltered = yearQuery(newData[selectedIndex].label, filteredProjects)
-                    renderProjects(doubleFiltered, projectsContainer, 'h2') 
+                    filteredProjects = yearQuery(newData[selectedIndex].label, filteredProjects)
+                    renderProjects(filteredProjects, projectsContainer, 'h2')
+                    projectsTitle.innerText = `${filteredProjects.length} projects!`; 
                 }
             });
     });
@@ -116,6 +117,7 @@ let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('input', (event) => {
     let filteredProjects = setQuery(event.target.value, projects);
     // re-render legends and pie chart when event triggers
+    projectsTitle.innerText = `${filteredProjects.length} projects!`;
     renderProjects(filteredProjects, projectsContainer, 'h2');
     renderPieChart(filteredProjects);
 });
