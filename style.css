@@ -70,9 +70,15 @@ form button {
 .projects article {
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 3;
+    grid-row: span 4;
     gap: 1em;
     padding: 0.8em;
+}
+
+.projects .date {
+    font-size: 14px;
+    color: lightslategray;
+    padding: 0;
 }
 
 .projects h2 {
@@ -123,4 +129,52 @@ label.color-scheme {
     grid-row: 2;
     margin: 0;
     font-size: 20px;
+}
+
+#projects-plot {
+    width: 40%;
+    max-width: 20em;
+    margin-block: 2em;
+    overflow: visible;
+}
+
+.swatch {
+    display: inline-flex;
+    width: 20px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color);
+    border-radius: 50%;
+}
+
+.legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
+    align-items: center;
+    list-style-type: none;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid darkslategray;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.key {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: auto;
+    padding: 10px;
+}
+
+.key em {
+    color: gray;
+    font-size: 12px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    gap: 24px;
+    align-items: center;
+    margin: 32px 0 32px 0;
 }
