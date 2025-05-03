@@ -199,7 +199,7 @@ path {
     }
 
     &:is(span) {
-        fill: var(--color);
+        border: 1px solid red;
     }
 }
 

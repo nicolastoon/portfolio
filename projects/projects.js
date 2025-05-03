@@ -1,12 +1,17 @@
 import { fetchJSON, renderProjects } from '../global.js';
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
+function generateTitle(projectTitleElement, projects) {
+    const plural = projects.length === 1 ? '' : 's';
+    projectTitleElement.innerText = `${projects.length} project${plural}!`
+}
+
 const projects = await fetchJSON('../lib/projects.json');
 const projectsContainer = document.querySelector('.projects');
 renderProjects(projects, projectsContainer, 'h2');
 
 const projectsTitle = document.querySelector('h1');
-projectsTitle.innerText = `${projects.length} projects!`;
+generateTitle(projectsTitle, projects);
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
 // let rolledData = d3.rollups(
@@ -87,11 +92,11 @@ function renderPieChart(projectsGiven) {
                 }
                 if (selectedIndex === -1) {
                     renderProjects(filteredProjects, projectsContainer, 'h2');
-                    projectsTitle.innerText = `${filteredProjects.length} projects!`; 
+                    generateTitle(projectsTitle, filteredProjects); 
                 } else {
                     filteredProjects = yearQuery(newData[selectedIndex].label, filteredProjects)
                     renderProjects(filteredProjects, projectsContainer, 'h2')
-                    projectsTitle.innerText = `${filteredProjects.length} projects!`; 
+                    generateTitle(projectsTitle, filteredProjects); 
                 }
             });
     });
@@ -117,7 +122,7 @@ let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('input', (event) => {
     let filteredProjects = setQuery(event.target.value, projects);
     // re-render legends and pie chart when event triggers
-    projectsTitle.innerText = `${filteredProjects.length} projects!`;
+    generateTitle(projectsTitle, filteredProjects); 
     renderProjects(filteredProjects, projectsContainer, 'h2');
     renderPieChart(filteredProjects);
 });
