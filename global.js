@@ -9,6 +9,7 @@ let pages = [
     {url: 'resume/', title: 'resume'},
     {url: 'projects/', title: 'projects'},
     {url: 'https://github.com/nicolastoon', title: 'github'},
+    {url: 'meta/', title: 'meta'},
     {url: 'contact/', title: 'contact'},
 ]
 let nav = document.createElement('nav');
@@ -37,8 +38,7 @@ let default_option = matchMedia("(prefers-color-scheme: dark)").matches ? 'dark'
 let secondary = default_option === 'dark' ? 'light' : 'dark';
 document.body.insertAdjacentHTML(
     'afterbegin',
-    `
-    <label class="color-scheme">
+    `<label class="color-scheme">
         theme:
         <select>
             <option value='${default_option}'>${default_option} (system default)</option>
