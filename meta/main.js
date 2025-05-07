@@ -165,7 +165,7 @@ function renderTotalLanguageBreakdown(commits) {
         const formatted = d3.format('.1~%')(proportion);
   
         container.innerHTML += `
-            <dt>${language}</dt>
+            <dt>${language.toUpperCase()}</dt>
             <dd>${count} lines (${formatted})</dd>
             `;
     }
@@ -200,7 +200,7 @@ function renderLanguageBreakdown(selection) {
         const formatted = d3.format('.1~%')(proportion);
   
         container.innerHTML += `
-            <dt>${language}</dt>
+            <dt>${language.toUpperCase()}</dt>
             <dd>${count} lines (${formatted})</dd>
             `;
     }
@@ -221,7 +221,7 @@ function unbrushed(event) {
 
     if (!selection) {
         renderTotalLanguageBreakdown(commits);
-        document.getElementById('selection-count').innerText = 'Language breakdown for all commits:';
+        document.getElementById('selection-count').innerText = 'Highlight data to get started...';
 
     }
 }
