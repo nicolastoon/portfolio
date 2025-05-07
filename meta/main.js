@@ -46,6 +46,9 @@ function processCommits(data) {
         });
 }
 
+let xScale = null;
+let yScale = null;
+
 function countTimeofDay(data) {
     const workByPeriod = d3.rollups(
         data,
@@ -116,8 +119,6 @@ const usableArea = {
     height: height - margin.top - margin.bottom,
 };
 
-let xScale = null;
-let yScale = null;
 
 function isCommitSelected(selection, commit) {
     if (!selection) {
@@ -145,6 +146,31 @@ function renderSelectionCount(selection) {
     return selectedCommits;
 }
 
+function renderTotalLanguageBreakdown(commits) {
+    const container = document.getElementById('language-breakdown');
+    const lines = commits.flatMap((d) => d.lines);
+  
+    // Use d3.rollup to count lines per language
+    const breakdown = d3.rollup(
+        lines,
+        (v) => v.length,
+        (d) => d.type,
+    );
+  
+    // Update DOM with breakdown
+    container.innerHTML = '';
+  
+    for (const [language, count] of breakdown) {
+        const proportion = count / lines.length;
+        const formatted = d3.format('.1~%')(proportion);
+  
+        container.innerHTML += `
+            <dt>${language}</dt>
+            <dd>${count} lines (${formatted})</dd>
+            `;
+    }
+}
+
 function renderLanguageBreakdown(selection) {
     const selectedCommits = selection
         ? commits.filter((d) => isCommitSelected(selection, d))
@@ -152,7 +178,8 @@ function renderLanguageBreakdown(selection) {
     const container = document.getElementById('language-breakdown');
   
     if (selectedCommits.length === 0) {
-        container.innerHTML = '';
+        container.innerHTML = 
+            '<dt>Highlight commits to see the language breakdown.</dt><dd>0 lines</dd>';
         return;
     }
     const requiredCommits = selectedCommits.length ? selectedCommits : commits;
@@ -188,8 +215,19 @@ function brushed(event) {
     renderLanguageBreakdown(selection);
 }
 
+function unbrushed(event) {
+    const selection = event.selection;
+    brushed(event);
+
+    if (!selection) {
+        renderTotalLanguageBreakdown(commits);
+        document.getElementById('selection-count').innerText = 'Language breakdown for all commits:';
+
+    }
+}
+
 function createBrushSelector(svg) {
-    svg.call(d3.brush().on('start brush end', brushed));
+    svg.call(d3.brush().on('brush', brushed).on('end', unbrushed));
 
     // Raise dots and everything after overlay
     svg.selectAll('.dots, .overlay ~ *').raise();
@@ -301,4 +339,5 @@ function renderScatterPlot(data, commits) {
 let data = await loadData();
 let commits = processCommits(data);
 renderCommitInfo(data, commits);
+renderTotalLanguageBreakdown(commits);
 renderScatterPlot(data, commits);

@@ -254,6 +254,7 @@ dl.info dt {
     grid-row: 1;
     margin: 0;
     font-size: 10px;
+    color: lightslategray;
     font-family: inherit;
 }
 
@@ -299,4 +300,26 @@ circle:hover {
 
 circle.selected {
     fill: #ff6b6b;
+}
+
+#selection-count {
+    text-align: center;
+}
+
+#language-breakdown {
+    display: grid;
+    text-align: center;
+}
+
+#language-breakdown dt {
+    grid-row: 1;
+    font-size: 12px;
+    font-family: inherit;
+    color: lightslategray;
+}
+
+#language-breakdown dd {
+    grid-row: 2;
+    margin: 0;
+    font-size: 20px;
 }
