@@ -118,11 +118,14 @@ label.color-scheme {
 
 #profile-stats dl {
     display: grid;
+    column-gap: 48px;
 }
 
 #profile-stats dt {
     grid-row: 1;
-    font-size: 14px;
+    font-size: 12px;
+    font-family: inherit;
+    color: lightslategray;
 }
 
 #profile-stats dd {
@@ -210,4 +213,22 @@ path {
     margin: 0 0 32px 0;
     font-family: inherit;
     text-align: center;
+}
+
+#meta-stats dl {
+    display: grid;
+    column-gap: 48px;
+}
+
+#meta-stats dt {
+    grid-row: 1;
+    font-size: 12px;
+    font-family: inherit;
+    color: lightslategray;
+}
+
+#meta-stats dd {
+    grid-row: 2;
+    margin: 0;
+    font-size: 20px;
 }
