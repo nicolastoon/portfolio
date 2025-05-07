@@ -241,8 +241,8 @@ dl.info {
     display: grid;
     transition-duration: 500ms;
     transition-property: opacity, visibility;
-    column-gap: 16px;
-    padding: 16px;
+    column-gap: 12px;
+    padding: 12px;
 }
 
 dl.info[hidden]:not(:hover, :focus-within) {
@@ -283,3 +283,20 @@ circle:hover {
     transform: scale(1.5);
 }
 
+@keyframes marching-ants {
+    to {
+      stroke-dashoffset: -8; /* 5 + 3 */
+    }
+}
+  
+.selection {
+    fill-opacity: 0.1;
+    stroke: black;
+    stroke-opacity: 0.7;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 0.5s linear infinite;
+}
+
+circle.selected {
+    fill: #ff6b6b;
+}
