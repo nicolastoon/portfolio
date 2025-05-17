@@ -78,17 +78,23 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     containerElement.innerHTML = '';
     for (let i = 0; i < projects.length; i++) {
         const project = projects[i];
-        const article = document.createElement('article');
+        const div = document.createElement('div');
 
         const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? '/' : '/portfolio/';
         let image_url = !project.image.startsWith('http') ? BASE_PATH + project.image : project.image;
 
-        article.innerHTML = `
-        <${headingLevel}>${project.title}</${headingLevel}>
-        <img src="${image_url}" alt="${project.title}" width="100%">
-        <p>${project.description}</p>
-        <p class='date'>c. ${project.year}</p>`;
-        containerElement.appendChild(article);
+        div.innerHTML = `
+        <a href="${project.link}">
+            <article>
+                <img src="${image_url}" height=100% width="100%">
+                <div>
+                    <h2>${project.title}</h2>
+                    <p class="date"><small>c. ${project.year}</small></p>
+                    <p>${project.description}</p>
+                </div>
+            </article>
+        </a>`;
+        containerElement.appendChild(div);
     }
 }
 

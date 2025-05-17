@@ -92,7 +92,6 @@ function renderTooltipContent(commit) {
     });
     time.textContent = commit.time;
     lines.textContent = commit.totalLines;
-
 }
 
 function updateTooltipVisibility(isVisible) {

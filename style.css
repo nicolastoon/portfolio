@@ -64,33 +64,38 @@ form button {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
+    padding: 2em;
+    box-shadow: 0 0 4px lightslategray;
+    border-radius: 10px;
+    margin-block: 2rem;
 }
 
 .projects article {
     display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 4;
+    grid-template-columns: 15em 1fr;
     gap: 1em;
-    padding: 0.8em;
+    padding: 0.6em;
+    margin: 0.6em;
+    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
+    box-shadow: 0 0 4px lightslategray;
+    border-radius: 10px;
 }
 
-.projects .date {
-    font-size: 14px;
-    color: lightslategray;
-    padding: 0;
+.projects article img {
+    border-radius: 10px;
 }
 
-.projects h2 {
-    margin: 0
+.projects article h2 {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    font-size: 20px;
+    line-height: 1;
 }
 
-.projects p {
-    margin: 0;
-}
-
-h1 {
-    font-size: 400%
+.projects article p {
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
 }
 
 .projects a {
@@ -103,7 +108,7 @@ h2 a:hover {
     text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: pretty;
 }
@@ -137,7 +142,6 @@ label.color-scheme {
 #projects-plot {
     width: 40%;
     max-width: 20em;
-    margin-block: 2em;
     overflow: visible;
 }
 
@@ -180,7 +184,7 @@ label.color-scheme {
     width: 100%;
     gap: 24px;
     align-items: center;
-    margin: 32px 0 0 0;
+    margin-block: 2rem;
 }
 
 &:has(path:hover) {
