@@ -336,3 +336,24 @@ circle.selected {
 hr.separator {
     margin: 32px 0 32px 0;
 }
+
+#commit-filter {
+    flex: 1;
+    align-items: baseline;
+    font-size: 12px;
+    text-align: right;
+    margin: 0;
+}
+
+#commit-filter input {
+    width: 30rem;
+    height: 6px;
+    align-self: second baseline;
+}
+
+#commit-filter time {
+    display: block;
+    margin-left: auto;
+    font-size: 12px;
+
+}

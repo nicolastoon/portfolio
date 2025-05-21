@@ -17,7 +17,15 @@
     <hr class='separator'>
 
     <div id="language-breakdown" class="stats"></div>
-    <p id="selection-count">Highlight data to get started...</p>
+    <p id="selection-count">Highlight data or adjust the slider to get started...</p>
+
+    <div id="commit-filter">
+        <label>
+            <em id="filter-title">Show commits until:</em>
+            <input type="range" min="0" max="100" id="commit-slider">
+            <time id="selected-time"></time>
+        </label>
+    </div>
 
     <h2>Commits by time of day</h2>
     <div id="chart"></div>

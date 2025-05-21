@@ -258,30 +258,28 @@ function renderCommitInfo(data, commits) {
     dl.append('dd').text(countDays(data));
 }
 
-function renderScatterPlot(data, commits) {
-    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
-    const rScale = d3
-        .scaleSqrt()
-        .domain([minLines, maxLines])
-        .range([5, 40]); // adjust these values based on your experimentation
-    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+function updateScatterPlot(data, filteredCommits) {
+    const sortedCommits = d3.sort(filteredCommits, (d) => -d.totalLines);
     
-        const svg = d3
-        .select('#chart')
-        .append('svg')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .style('overflow', 'visible');
-
+    d3.select('svg').remove();
+    const svg = d3
+    .select('#chart')
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .style('overflow', 'visible');
+    
     xScale = d3
         .scaleTime()
-        .domain(d3.extent(commits, (d) => d.datetime))
+        .domain(d3.extent(filteredCommits, (d) => d.datetime))
         .range([usableArea.left, usableArea.right])
         .nice();
       
     yScale = d3
         .scaleLinear()
-        .domain([0, 24])
+        .domain([24, 0])
         .range([usableArea.top, usableArea.bottom]);
+
+    svg.selectAll('g').remove();    
     
     // Add gridlines BEFORE the axes
     const gridlines = svg
@@ -314,6 +312,13 @@ function renderScatterPlot(data, commits) {
         .append('g')
         .attr('class', 'dots');
 
+    const [minLines, maxLines] = d3.extent(filteredCommits, (d) => d.totalLines);
+    const rScale = d3
+        .scaleSqrt()
+        .domain([minLines, maxLines])
+        .range([5, 40]); // adjust these values based on your experimentation
+
+    dots.selectAll('circle').remove()
     dots
         .selectAll('circle')
         .data(sortedCommits)
@@ -339,4 +344,36 @@ let data = await loadData();
 let commits = processCommits(data);
 renderCommitInfo(data, commits);
 renderTotalLanguageBreakdown(commits);
-renderScatterPlot(data, commits);
+updateScatterPlot(data, commits);
+
+// scrollytelling for lab08
+
+let commitProgress = 100;
+let timeScale = d3.scaleTime(
+    [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
+    [0, 100],
+);
+let commitMaxTime = timeScale.invert(commitProgress);
+const timeSlider = document.getElementById('commit-slider')
+const selectedTime = d3.select('#selected-time');
+selectedTime.text(commitMaxTime.toLocaleString('en-US', { timeStyle: 'short', dateStyle: 'long' }));
+
+function filterCommitsByTime(commits, timeFilter) {
+    return commits.filter((d) => d.datetime <= timeScale.invert(timeFilter));
+}
+
+function formatTime(value) {
+    const date = timeScale.invert(value);
+    return date.toLocaleString('en-US', { timeStyle: 'short', dateStyle: 'long' }); // Format as HH:MM AM/PM
+}
+
+function updateTimeDisplay() {
+    const timeFilter = Number(timeSlider.value); // Get slider value
+    selectedTime.text(formatTime(timeFilter)); // Display formatted time
+
+    const filteredCommits = filterCommitsByTime(commits, timeFilter); // filters by time and assign to some top-level variable.
+    updateScatterPlot(data, filteredCommits);
+}
+
+updateTimeDisplay();
+timeSlider.addEventListener('input', updateTimeDisplay);
