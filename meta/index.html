@@ -22,13 +22,21 @@
     <div id="commit-filter">
         <label>
             <em id="filter-title">Show commits until:</em>
-            <input type="range" min="0" max="100" id="commit-slider">
+            <input type="range" min="0" max="100" id="commit-slider" value="100">
             <time id="selected-time"></time>
         </label>
     </div>
 
-    <h2>Commits by time of day</h2>
-    <div id="chart"></div>
+    <div id="scrolly-1">
+        <div id="scatter-story"></div>
+        <div id="adaptive-elements">
+            <div id="scatter-plot">
+            <h2>Commits by time of day</h2>
+            <div id="chart"></div>
+        </div>
+        <dl id="files"></dl>
+        </div>
+    </div>
 
     <dl id="commit-tooltip" class="info tooltip" hidden>
         <dt>Commit</dt>

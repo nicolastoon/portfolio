@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 async function loadData() {
     const data = await d3.csv('loc.csv', (row) => ({
@@ -22,7 +23,7 @@ function processCommits(data) {
     
             let ret = {
                 id: commit,
-                url: 'https://github.com/YOUR_REPO/commit/' + commit,
+                url: 'https://github.com/nicolastoon/portfolio/commit/' + commit,
                 author,
                 date,
                 time,
@@ -43,11 +44,9 @@ function processCommits(data) {
             });
 
             return ret;
-        });
+        })
+        .sort((a, b) => a.datetime - b.datetime);
 }
-
-let xScale = null;
-let yScale = null;
 
 function countTimeofDay(data) {
     const workByPeriod = d3.rollups(
@@ -119,17 +118,15 @@ const usableArea = {
 };
 
 
-function isCommitSelected(selection, commit) {
+function isCommitSelected(selection, commit) { 
     if (!selection) {
       return false;
     }
-    // TODO: return true if commit is within brushSelection
-    // and false if not
+    // TODO: return true if commit is within brushSelection and false if not
     const topLeft = [xScale.invert(selection[0][0]), yScale.invert(selection[0][1])];
     const bottomRight = [xScale.invert(selection[1][0]), yScale.invert(selection[1][1])];
-
     return commit.datetime >= topLeft[0] && commit.datetime <= bottomRight[0] && 
-        commit.hourFrac >= topLeft[1] && commit.hourFrac <= bottomRight[1];
+        commit.hourFrac <= topLeft[1] && commit.hourFrac >= bottomRight[1];
 }
 
 function renderSelectionCount(selection) {
@@ -221,12 +218,13 @@ function unbrushed(event) {
     if (!selection) {
         renderTotalLanguageBreakdown(commits);
         document.getElementById('selection-count').innerText = 'Highlight data to get started...';
-
     }
 }
 
 function createBrushSelector(svg) {
-    svg.call(d3.brush().on('brush', brushed).on('end', unbrushed));
+    svg.call(d3.brush()
+        .on('brush', brushed)
+        .on('end', unbrushed));
 
     // Raise dots and everything after overlay
     svg.selectAll('.dots, .overlay ~ *').raise();
@@ -257,123 +255,250 @@ function renderCommitInfo(data, commits) {
     dl.append('dt').html('Most Frequent <abbr title="Day of the Week">DotW</abbr>');
     dl.append('dd').text(countDays(data));
 }
-
-function updateScatterPlot(data, filteredCommits) {
-    const sortedCommits = d3.sort(filteredCommits, (d) => -d.totalLines);
-    
-    d3.select('svg').remove();
-    const svg = d3
-    .select('#chart')
-    .append('svg')
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .style('overflow', 'visible');
-    
-    xScale = d3
-        .scaleTime()
-        .domain(d3.extent(filteredCommits, (d) => d.datetime))
-        .range([usableArea.left, usableArea.right])
-        .nice();
-      
-    yScale = d3
-        .scaleLinear()
-        .domain([24, 0])
-        .range([usableArea.top, usableArea.bottom]);
-
-    svg.selectAll('g').remove();    
-    
-    // Add gridlines BEFORE the axes
-    const gridlines = svg
-        .append('g')
-        .attr('class', 'gridlines')
-        .attr('transform', `translate(${usableArea.left}, 0)`);
-
-    // Create gridlines as an axis with no labels and full-width ticks
-    gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
-
-    // Create the axes
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3
-        .axisLeft(yScale)
-        .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
-
-    // Add X axis
-    svg
-        .append('g')
-        .attr('transform', `translate(0, ${usableArea.bottom})`)
-        .call(xAxis);
-
-    // Add Y axis
-    svg
-        .append('g')
-        .attr('transform', `translate(${usableArea.left}, 0)`)
-        .call(yAxis);
-
-    const dots = svg
-        .append('g')
-        .attr('class', 'dots');
-
-    const [minLines, maxLines] = d3.extent(filteredCommits, (d) => d.totalLines);
-    const rScale = d3
-        .scaleSqrt()
-        .domain([minLines, maxLines])
-        .range([5, 40]); // adjust these values based on your experimentation
-
-    dots.selectAll('circle').remove()
-    dots
-        .selectAll('circle')
-        .data(sortedCommits)
-        .join('circle')
-        .attr('cx', (d) => xScale(d.datetime))
-        .attr('cy', (d) => yScale(d.hourFrac))
-        .attr('r', (d) => rScale(d.totalLines))
-        .attr('fill-opacity', 0.7)
-        .attr('fill', 'steelblue')
-        .on('mouseenter', (event, commit) => {
-            renderTooltipContent(commit);
-            updateTooltipVisibility(true);
-            updateTooltipPosition(event);
-        })
-        .on('mouseleave', () => {
-            updateTooltipVisibility(false);
-        });
-    
-    createBrushSelector(svg);
-}
     
 let data = await loadData();
 let commits = processCommits(data);
 renderCommitInfo(data, commits);
 renderTotalLanguageBreakdown(commits);
-updateScatterPlot(data, commits);
 
-// scrollytelling for lab08
+console.log(commits)
+
+let xScale = null;
+let yScale = null;
 
 let commitProgress = 100;
-let timeScale = d3.scaleTime(
-    [d3.min(commits, (d) => d.datetime), d3.max(commits, (d) => d.datetime)],
-    [0, 100],
-);
+let timeScale = d3
+    .scaleTime()
+    .domain([
+        d3.min(commits, (d) => d.datetime),
+        d3.max(commits, (d) => d.datetime),
+    ])
+  .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
-const timeSlider = document.getElementById('commit-slider')
-const selectedTime = d3.select('#selected-time');
-selectedTime.text(commitMaxTime.toLocaleString('en-US', { timeStyle: 'short', dateStyle: 'long' }));
+let filteredCommits = commits;
+const timeSlider = d3.select('#commit-slider')
+    .on('input', event => {
+        onTimeSliderChange(event);
+        updateFileDisplay(filteredCommits);
+        renderTotalLanguageBreakdown(filteredCommits);
+    });
+const selectedTime = d3.select('#selected-time')
+    .text(commitMaxTime.toLocaleString('en-US', { timeStyle: 'short', dateStyle: 'long' }));
 
-function filterCommitsByTime(commits, timeFilter) {
-    return commits.filter((d) => d.datetime <= timeScale.invert(timeFilter));
-}
+function onTimeSliderChange(event) {
+    commitMaxTime = timeScale.invert(event.target.value);
+    selectedTime.text(commitMaxTime.toLocaleString('en-US', { timeStyle: 'short', dateStyle: 'long' }));
 
-function formatTime(value) {
-    const date = timeScale.invert(value);
-    return date.toLocaleString('en-US', { timeStyle: 'short', dateStyle: 'long' }); // Format as HH:MM AM/PM
-}
-
-function updateTimeDisplay() {
-    const timeFilter = Number(timeSlider.value); // Get slider value
-    selectedTime.text(formatTime(timeFilter)); // Display formatted time
-
-    const filteredCommits = filterCommitsByTime(commits, timeFilter); // filters by time and assign to some top-level variable.
+    filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
     updateScatterPlot(data, filteredCommits);
 }
 
-updateTimeDisplay();
-timeSlider.addEventListener('input', updateTimeDisplay);
+function renderScatterPlot(data, commits) {
+    const width = 1000;
+    const height = 600;
+    const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+    const usableArea = {
+        top: margin.top,
+        right: width - margin.right,
+        bottom: height - margin.bottom,
+        left: margin.left,
+        width: width - margin.left - margin.right,
+        height: height - margin.top - margin.bottom,
+    };
+
+    // CHANGE: instead of creating a new svg element, we'll select the existing one.
+    const svg = d3
+        .select('#chart')
+        .append('svg')
+        .attr('id', 'chart-svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .style('overflow', 'visible');
+
+    // CHANGE: we don't need to create a new xScale, we can just update the existing one.
+    xScale = d3
+        .scaleTime()
+        .domain(d3.extent(commits, (d) => d.datetime))
+        .range([usableArea.left, usableArea.right])
+        .nice();
+
+    // REMOVE: the yScale doesn't change when the user changes the slider
+    yScale = d3
+        .scaleLinear()
+        .domain([0, 24])
+        .range([usableArea.bottom, usableArea.top]);
+
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]); // adjust these values based on your experimentation
+
+    const xAxis = d3.axisBottom(xScale);
+
+    // REMOVE: the yAxis doesn't change when the user changes the slider
+    const yAxis = d3
+        .axisLeft(yScale)
+        .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
+
+    // REMOVE: the gridlines don't change when the user changes the slider
+    const gridlines = svg
+        .append('g')
+        .attr('class', 'gridlines')
+        .attr('transform', `translate(${usableArea.left}, 0)`);
+
+    gridlines.call(
+        d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width),
+    );
+
+    // CHANGE: we should clear out the existing xAxis and then create a new one.
+    svg
+        .append('g')
+        .attr('transform', `translate(0, ${usableArea.bottom})`)
+        .call(xAxis);
+
+    // REMOVE: the yAxis doesn't change when the user changes the slider
+    svg
+        .append('g')
+        .attr('transform', `translate(${usableArea.left}, 0)`)
+        .call(yAxis);
+
+    // CHANGE: we shouldn't need to create a new dots group, we can just select the existing one.
+    const dots = svg.append('g').attr('class', 'dots');
+
+    // KEEP: This code already updates existing dots.
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+    dots
+        .selectAll('circle')
+        .data(sortedCommits, (d) => d.id)
+        .join('circle')
+        .attr('cx', (d) => xScale(d.datetime))
+        .attr('cy', (d) => yScale(d.hourFrac))
+        .attr('r', (d) => rScale(d.totalLines))
+        .attr('fill', 'steelblue')
+        .style('fill-opacity', 0.7) // Add transparency for overlapping dots
+        .on('mouseenter', (event, commit) => {
+        d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
+        renderTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
+        })
+        .on('mouseleave', (event) => {
+        d3.select(event.currentTarget).style('fill-opacity', 0.7);
+        updateTooltipVisibility(false);
+        });
+
+    // REMOVE: the brush selector doesn't change when the user changes the slider
+    createBrushSelector(svg);
+}
+
+function updateScatterPlot(data, commits) {
+    const svg = d3.select('#chart').select('svg');
+
+    xScale = xScale.domain(d3.extent(commits, (d) => d.datetime));
+
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
+
+    const xAxis = d3.axisBottom(xScale);
+    const xAxisGroup = svg.select('g.x-axis');
+    xAxisGroup.selectAll('*').remove();
+    xAxisGroup.call(xAxis);
+
+    const dots = svg.select('g.dots');
+
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+    dots
+        .selectAll('circle')
+        .data(sortedCommits, (d) => d.id)
+        .join('circle')
+        .attr('cx', (d) => xScale(d.datetime))
+        .attr('cy', (d) => yScale(d.hourFrac))
+        .attr('r', (d) => rScale(d.totalLines))
+        .attr('fill', 'steelblue')
+        .style('fill-opacity', 0.7) // Add transparency for overlapping dots
+        .on('mouseenter', (event, commit) => {
+        d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
+        renderTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
+        })
+        .on('mouseleave', (event) => {
+        d3.select(event.currentTarget).style('fill-opacity', 0.7);
+        updateTooltipVisibility(false);
+        });
+}
+
+function updateFileDisplay(filteredCommits) {
+    let lines = filteredCommits.flatMap((d) => d.lines);
+    let files = d3
+        .groups(lines, (d) => d.file)
+        .map(([name, lines]) => {
+            return { name, lines };
+        })
+        .sort((a, b) => b.lines.length - a.lines.length);
+
+    let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+    let filesContainer = d3
+        .select('#files')
+        .selectAll('div')
+        .data(files, (d) => d.name)
+        .join(
+            // This code only runs when the div is initially rendered
+            (enter) =>
+            enter.append('div').call((div) => {
+                div.append('dt').append('code');
+                div.append('dd');
+            }),
+        );
+
+    filesContainer
+        .select('dd')
+        .selectAll('div')
+        .data((d) => d.lines)
+        .join('div')
+        .attr('class', 'loc')
+        .style('background', (d) => `${colors(d.type)}`);;
+
+    // This code updates the div info
+    filesContainer.select('dt > code').html((d) => `${d.name}<br><small>${d.lines.length} lines<small>`);
+}
+
+renderScatterPlot(data, commits);
+updateFileDisplay(commits);
+
+d3.select('#scatter-story')
+    .selectAll('.step')
+    .data(commits)
+    .join('div')
+    .attr('class', 'step')
+    .html(
+        (d, i) => `
+            On ${d.datetime.toLocaleString('en', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+        })},
+            I made <a href="${d.url}" target="_blank">${
+        i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+        }</a>.
+            I edited ${d.totalLines} lines across ${
+        d3.rollups(
+            d.lines,
+            (D) => D.length,
+            (d) => d.file,
+        ).length
+        } files.
+            Then I looked over all I had made, and I saw that it was very good.
+        `,
+    );
+
+function onStepEnter(response) {
+    filteredCommits = commits.filter((d) => d.datetime <= response.element.__data__.datetime);
+    updateScatterPlot(data, filteredCommits);
+    updateFileDisplay(filteredCommits);
+}
+
+const scroller = scrollama();
+scroller
+    .setup({
+        container: '#scrolly-1',
+        step: '#scrolly-1 .step',
+    })
+    .onStepEnter(onStepEnter);
