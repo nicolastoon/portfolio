@@ -1,12 +1,12 @@
 [
     {
-        "title": "Spreading Awareness for Parkinson's Disease Through Typing",
+        "title": "Stage Left: Typing with Parkinson's",
         "year": "2025",
         "org": "DSC 106",
         "tags": ["data visualization"],
         "image": "images/parkinsons.png",
         "link": "https://simonerao.github.io/Parkinsons_Disease/",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos repellendus dolores, perferendis, a sit, nostrum eos amet esse eaque voluptatibus sed libero asperiores magni porro corporis velit totam quo suscipit!"
+        "description": "Parkinson's Disease affects many different parts of the body, including the hands, that can affect everyday activity. Here, we model some symptoms of Parkinson's through interactive typing games. 🏆 <a href=\"https://dsc-courses.github.io/dsc106-2025-sp/showcase/\" style=\"text-decoration:underline;color:#5c8aff;\">Won \"Best Project\" & \"People's Choice\" awards!</a> 🏆"
     },
     {
         "title": "Classifying Benign and Malignant Tumors",
@@ -15,7 +15,7 @@
         "tags": ["machine learning", "research"],
         "image": "images/breast_tumor.png",
         "link": "https://shamitagoyal.github.io/dsc3-projects-2025/",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos repellendus dolores, perferendis, a sit, nostrum eos amet esse eaque voluptatibus sed libero asperiores magni porro corporis velit totam quo suscipit!"
+        "description": "Classifying breast tumors is a common machine learning task. Here, we explore different models and their potential to classify breast tumors using the BreakHis dataset."
     },
     {
         "title": "Bikewatching in Boston",
@@ -24,7 +24,7 @@
         "tags": ["data visualization"],
         "image": "images/bikewatching.png",
         "link": "https://nicolastoon.github.io/bikewatching/",
-        "description": "Vel corrupti eum voluptate explicabo! Delectus, blanditiis, quia deleniti vitae nesciunt expedita porro recusandae repellat illum obcaecati quam molestias, quibusdam dolorem nihil at natus repellendus placeat minus? Cum, consectetur quis!"
+        "description": "Creating a dynamic visualization that visualizes bike traffic in the city of Boston, using Mapbox and Boston's open data."
     },
     {
         "title": "Analyzing the Significance of Tags in Online Recipes",
@@ -33,7 +33,7 @@
         "tags": ["machine learning", "hypothesis testing"],
         "image": "images/food.jpg",
         "link": "https://nicolastoon.github.io/analyzing-recipe-tags/",
-        "description": "Aspernatur temporibus reiciendis maxime deserunt voluptas pariatur quaerat doloremque ipsam, quos nesciunt facilis sint nihil voluptate laborum? Dicta, beatae. Dolor inventore optio ex nisi officia, porro quidem? Quam, ducimus libero."
+        "description": "A write-up of the data science pipeline investigating different aspects and creating a predictive model about online recipes."
     },
     {
         "title": "The Impact Siblings Have on Academic Motivation in Asian-American Adolescents",
@@ -42,6 +42,6 @@
         "tags": ["research"],
         "image": "images/siblings.jpg",
         "link": "https://drive.google.com/file/d/1SoWHdY74Q3zqs5IPaSZjVD3pYx3G1Ufp/view",
-        "description": "Tempore aut blanditiis illo culpa rem omnis numquam laborum aspernatur molestias, aperiam voluptatem rerum, accusamus reprehenderit dicta eos maiores doloribus animi, possimus repudiandae? Quas laborum sed vitae vero atque harum."
+        "description": "School is difficult, but can the siblings you frustratingly put up with actually help in your endeavors? This is an in-depth paper researching whether the presence of siblings affects a student's motivation in school."
     }
 ]
