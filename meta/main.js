@@ -221,10 +221,12 @@ function unbrushed(event) {
     }
 }
 
+const brush = d3.brush()
+    .on('brush', brushed)
+    .on('end', unbrushed);
+
 function createBrushSelector(svg) {
-    svg.call(d3.brush()
-        .on('brush', brushed)
-        .on('end', unbrushed));
+    svg.call(brush);
 
     // Raise dots and everything after overlay
     svg.selectAll('.dots, .overlay ~ *').raise();
@@ -276,8 +278,9 @@ let timeScale = d3
   .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
 let filteredCommits = commits;
-const timeSlider = d3.select('#commit-slider')
+d3.select('#commit-slider')
     .on('input', event => {
+        d3.select('#chart-svg').call(brush.move, null);
         onTimeSliderChange(event);
         updateFileDisplay(filteredCommits);
         renderTotalLanguageBreakdown(filteredCommits);
@@ -464,41 +467,41 @@ function updateFileDisplay(filteredCommits) {
 renderScatterPlot(data, commits);
 updateFileDisplay(commits);
 
-d3.select('#scatter-story')
-    .selectAll('.step')
-    .data(commits)
-    .join('div')
-    .attr('class', 'step')
-    .html(
-        (d, i) => `
-            On ${d.datetime.toLocaleString('en', {
-        dateStyle: 'full',
-        timeStyle: 'short',
-        })},
-            I made <a href="${d.url}" target="_blank">${
-        i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
-        }</a>.
-            I edited ${d.totalLines} lines across ${
-        d3.rollups(
-            d.lines,
-            (D) => D.length,
-            (d) => d.file,
-        ).length
-        } files.
-            Then I looked over all I had made, and I saw that it was very good.
-        `,
-    );
+// d3.select('#scatter-story')
+//     .selectAll('.step')
+//     .data(commits)
+//     .join('div')
+//     .attr('class', 'step')
+//     .html(
+//         (d, i) => `
+//             On ${d.datetime.toLocaleString('en', {
+//         dateStyle: 'full',
+//         timeStyle: 'short',
+//         })},
+//             I made <a href="${d.url}" target="_blank">${
+//         i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+//         }</a>.
+//             I edited ${d.totalLines} lines across ${
+//         d3.rollups(
+//             d.lines,
+//             (D) => D.length,
+//             (d) => d.file,
+//         ).length
+//         } files.
+//             Then I looked over all I had made, and I saw that it was very good.
+//         `,
+//     );
 
-function onStepEnter(response) {
-    filteredCommits = commits.filter((d) => d.datetime <= response.element.__data__.datetime);
-    updateScatterPlot(data, filteredCommits);
-    updateFileDisplay(filteredCommits);
-}
+// function onStepEnter(response) {
+//     filteredCommits = commits.filter((d) => d.datetime <= response.element.__data__.datetime);
+//     updateScatterPlot(data, filteredCommits);
+//     updateFileDisplay(filteredCommits);
+// }
 
-const scroller = scrollama();
-scroller
-    .setup({
-        container: '#scrolly-1',
-        step: '#scrolly-1 .step',
-    })
-    .onStepEnter(onStepEnter);
+// const scroller = scrollama();
+// scroller
+//     .setup({
+//         container: '#scrolly-1',
+//         step: '#scrolly-1 .step',
+//     })
+//     .onStepEnter(onStepEnter);

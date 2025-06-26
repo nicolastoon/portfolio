@@ -6,11 +6,9 @@ function $$(selector, context = document) {
 
 let pages = [
     {url: '', title: 'home'},
-    {url: 'resume/', title: 'resume'},
     {url: 'projects/', title: 'projects'},
     {url: 'https://github.com/nicolastoon', title: 'github'},
     {url: 'meta/', title: 'metadata'},
-    {url: 'contact/', title: 'contact'},
 ]
 let nav = document.createElement('nav');
 document.body.prepend(nav);
@@ -34,29 +32,30 @@ for (let p of pages) {
     }
 }
 
-let default_option = matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
-let secondary = default_option === 'dark' ? 'light' : 'dark';
-document.body.insertAdjacentHTML(
-    'afterbegin',
-    `<label class="color-scheme">
-        theme:
-        <select>
-            <option value='${default_option}'>${default_option} (system default)</option>
-            <option value='${secondary}'>${secondary}</option>
-        </select>
-    </label>`,
-);
+// // theme change
+// let default_option = matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
+// let secondary = default_option === 'dark' ? 'light' : 'dark';
+// document.body.insertAdjacentHTML(
+//     'afterbegin',
+//     `<label class="color-scheme">
+//         theme:
+//         <select>
+//             <option value='${default_option}'>${default_option} (system default)</option>
+//             <option value='${secondary}'>${secondary}</option>
+//         </select>
+//     </label>`,
+// );
 
-let select = document.querySelector('select');
-select.addEventListener('input', function (event) {
-    console.log('color scheme changed to', event.target.value);
-    document.documentElement.style.setProperty('color-scheme', event.target.value);
-    localStorage.colorScheme = event.target.value;
-});
-if (localStorage.colorScheme) {
-    document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
-    select.value = localStorage.colorScheme;
-}
+// let select = document.querySelector('select');
+// select.addEventListener('input', function (event) {
+//     console.log('color scheme changed to', event.target.value);
+//     document.documentElement.style.setProperty('color-scheme', event.target.value);
+//     localStorage.colorScheme = event.target.value;
+// });
+// if (localStorage.colorScheme) {
+//     document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
+//     select.value = localStorage.colorScheme;
+// }
 
 export async function fetchJSON(url) {
     try {
@@ -83,13 +82,20 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? '/' : '/portfolio/';
         let image_url = !project.image.startsWith('http') ? BASE_PATH + project.image : project.image;
 
+        const organization = project.org !== '' ? ` • ${project.org}` : ''
+        let tags = ""
+        for (let j = 0; j < project.tags.length; j++) {
+            tags += `<div class="tag">${project.tags[j]}</div>`
+        }
+
         div.innerHTML = `
         <a href="${project.link}">
             <article>
-                <img src="${image_url}" height=100% width="100%">
+                <img src="${image_url}" height=100% width="100%" style="object-fit:cover;">
                 <div>
                     <h2>${project.title}</h2>
-                    <p class="date"><small>c. ${project.year}</small></p>
+                    <div class="tags">${tags}</div>
+                    <p class="info">${project.year}${organization}</p>
                     <p>${project.description}</p>
                 </div>
             </article>

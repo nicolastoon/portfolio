@@ -1,14 +1,27 @@
 [
     {
+        "title": "Spreading Awareness for Parkinson's Disease Through Typing",
+        "year": "2025",
+        "org": "DSC 106",
+        "tags": ["data visualization"],
+        "image": "images/parkinsons.png",
+        "link": "https://simonerao.github.io/Parkinsons_Disease/",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos repellendus dolores, perferendis, a sit, nostrum eos amet esse eaque voluptatibus sed libero asperiores magni porro corporis velit totam quo suscipit!"
+    },
+    {
         "title": "Classifying Benign and Malignant Tumors",
         "year": "2025",
+        "org": "DS3 @ UCSD",
+        "tags": ["machine learning", "research"],
         "image": "images/breast_tumor.png",
-        "link": "",
+        "link": "https://shamitagoyal.github.io/dsc3-projects-2025/",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos repellendus dolores, perferendis, a sit, nostrum eos amet esse eaque voluptatibus sed libero asperiores magni porro corporis velit totam quo suscipit!"
     },
     {
         "title": "Bikewatching in Boston",
         "year": "2025",
+        "org": "DSC 106",
+        "tags": ["data visualization"],
         "image": "images/bikewatching.png",
         "link": "https://nicolastoon.github.io/bikewatching/",
         "description": "Vel corrupti eum voluptate explicabo! Delectus, blanditiis, quia deleniti vitae nesciunt expedita porro recusandae repellat illum obcaecati quam molestias, quibusdam dolorem nihil at natus repellendus placeat minus? Cum, consectetur quis!"
@@ -16,6 +29,8 @@
     {
         "title": "Analyzing the Significance of Tags in Online Recipes",
         "year": "2025",
+        "org": "DSC 80",
+        "tags": ["machine learning", "hypothesis testing"],
         "image": "images/food.jpg",
         "link": "https://nicolastoon.github.io/analyzing-recipe-tags/",
         "description": "Aspernatur temporibus reiciendis maxime deserunt voluptas pariatur quaerat doloremque ipsam, quos nesciunt facilis sint nihil voluptate laborum? Dicta, beatae. Dolor inventore optio ex nisi officia, porro quidem? Quam, ducimus libero."
@@ -23,64 +38,10 @@
     {
         "title": "The Impact Siblings Have on Academic Motivation in Asian-American Adolescents",
         "year": "2023",
+        "org": "AP Research",
+        "tags": ["research"],
         "image": "images/siblings.jpg",
         "link": "https://drive.google.com/file/d/1SoWHdY74Q3zqs5IPaSZjVD3pYx3G1Ufp/view",
         "description": "Tempore aut blanditiis illo culpa rem omnis numquam laborum aspernatur molestias, aperiam voluptatem rerum, accusamus reprehenderit dicta eos maiores doloribus animi, possimus repudiandae? Quas laborum sed vitae vero atque harum."
-    },
-    {
-        "title": "Entering High School",
-        "year": "2019",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Vel corrupti eum voluptate explicabo! Delectus, blanditiis, quia deleniti vitae nesciunt expedita porro recusandae repellat illum obcaecati quam molestias, quibusdam dolorem nihil at natus repellendus placeat minus? Cum, consectetur quis!"
-    },
-    {
-        "title": "Being Birthed",
-        "year": "2016",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Autem similique quisquam perferendis est facilis aliquid dolores, ab debitis atque, voluptatum nobis. Adipisci, esse reprehenderit. Numquam esse beatae officiis nihil ratione, nulla, ab recusandae laboriosam amet perferendis voluptatem minima!"
-    },
-    {
-        "title": "Entering Elementary School",
-        "year": "2019",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Eum consequuntur voluptate odit quis, deserunt maxime? In sint, eligendi, recusandae eaque vel, quas placeat facilis debitis quaerat doloribus magni inventore ut expedita culpa quibusdam excepturi similique et! Dignissimos, pariatur?"
-    },
-    {
-        "title": "Entering Middle School",
-        "year": "2016",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Adipisci, illo dolore amet, ex officia vitae facilis corporis iusto temporibus odio aspernatur cum tempora, sed quidem! Error quae optio deserunt ut ad est a, recusandae ex sequi quasi sunt?"
-    },
-    {
-        "title": "Why is Public Transportation so Bad in North America?",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Magnam nam recusandae beatae illo fuga eaque, deleniti tempora perferendis, corrupti, similique aspernatur a. Adipisci possimus est maxime eaque incidunt, ex dicta recusandae ducimus aspernatur, magnam voluptatem vel, cumque suscipit."
-    },
-    {
-        "title": "Making an ELO System for Basketball",
-        "year": "2025",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Sapiente dolore numquam distinctio commodi tenetur nesciunt quidem consectetur inventore repudiandae odio error nobis accusantium cupiditate, veritatis, rem tempore, nemo ea deleniti repellendus voluptate ipsam? Amet itaque eius blanditiis suscipit?"
-    },
-    {
-        "title": "Analyzing Single Nucleotide Polymorphisms",
-        "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "In maxime reiciendis cupiditate eius asperiores, laudantium, numquam ut sunt optio enim voluptatum nostrum adipisci repudiandae suscipit, minus mollitia fugiat? Odit totam iste, fugiat libero nesciunt facilis sapiente quae nemo."
-    },
-    {
-        "title": "Moving on...",
-        "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "link": "",
-        "description": "Molestiae, repellat. Ipsam omnis assumenda illo laudantium minus maiores provident sit incidunt commodi, earum hic iste consequuntur ea, aliquam eveniet eum placeat illum, laborum enim necessitatibus natus qui ex suscipit!"
     }
 ]

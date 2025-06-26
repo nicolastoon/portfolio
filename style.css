@@ -1,7 +1,6 @@
 :root {
-    --color-accent: oklch(0.81 0.0954 267.19);
-    accent-color: var(--color-accent);
-    color-scheme: light dark;
+    --color-accent: color-mix(in oklch, oklch(0.8086 0.0954 267.19), canvas 85%);
+    color-scheme: light;
 }
 
 body {
@@ -33,8 +32,8 @@ nav a {
 }
 
 nav a:hover {
-    border-bottom: 0.2em solid var(--color-accent);
-    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+    border-bottom: 0.2em solid oklch(0.8086 0.0954 267.19);
+    background-color: var(--color-accent);
 }
 
 .current {
@@ -63,11 +62,13 @@ form button {
 }
 
 .projects {
-    display: grid;
-    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
-    padding: 2em;
-    box-shadow: 0 0 4px lightslategray;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-accent);
+    padding: 0.5em;
+    gap: 0.3em;
+    box-shadow: 0 0 3px lightslategray;
+    border-radius: 4px;
     margin-block: 1rem;
 }
 
@@ -77,13 +78,37 @@ form button {
     gap: 1em;
     padding: 0.6em;
     margin: 0.6em;
-    background-color: color-mix(in oklch, var(--color-accent), canvas 90%);
-    box-shadow: 0 0 4px lightslategray;
-    border-radius: 10px;
+    background-color: var(--color-accent);
+    box-shadow: 0 0 3px lightslategray;
+    border-radius: 4px;
+}
+
+.projects article .tags {
+    display: flex;
+    margin: 12px 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 0.8em;
+}
+
+.projects article .tag {
+    padding: 0.5em 1em;
+    font-family: inherit;
+    font-size: 12px;
+    border-radius: 16px;
+    background-color: color-mix(in oklch, oklch(0.8086 0.0954 267.19), canvas 60%);
+    box-shadow: 0 0 2px lightgray;
+}
+
+.projects article .info {
+    color: gray;
+    font-size: 12px;
 }
 
 .projects article img {
-    border-radius: 10px;
+    border: solid 1px lightgray;
+    border-radius: 4px;
 }
 
 .projects article h2 {
@@ -94,6 +119,7 @@ form button {
 }
 
 .projects article p {
+    font-size: 14px;
     margin-top: 0.6em;
     margin-bottom: 0.6em;
 }
@@ -161,7 +187,7 @@ label.color-scheme {
     list-style-type: none;
     gap: 16px;
     padding: 16px;
-    border: 3px solid color-mix(in oklch, var(--color-accent), canvas 85%);
+    border: 3px solid var(--color-accent);
     border-radius: 10px;
     flex: 1;
 }
@@ -362,67 +388,6 @@ hr.separator {
     font-size: 12px;
 }
 
-#files {
-    display: grid; 
-    grid-template-columns: 1fr 4fr;
-    font-family: inherit;
-
-    > div {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: subgrid;
-        padding: 10px;
-        gap: 10px;
-    }
-
-    dt {
-        grid-column: 1;
-        font-family: inherit;
-    }
-
-    dd {
-        grid-column: 2;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: start;
-        align-content: start;
-        gap: 0.15em;
-        padding-top: 0.6em;
-        margin-left: 0;
-    }
-}
-
-.loc {
-    display: flex;
-    width: 0.5em;
-    aspect-ratio: 1;
-    border-radius: 50%;
-}
-
-#scrolly-1 {
-    position: relative;
-    display: flex;
-    gap: 1rem;
-
-    > * {
-        flex: 1;
-    }
-}
-
-#scatter-story {
-    position: relative;
-    font-size: 12px;
-    width: 10%;
-
-    div {
-        padding: 12px;
-    }
-}
-
-#adaptive-elements {
-    position: sticky;
-    top: 0;
-    left: 0;
-    bottom: auto;
-    height: 70vh;
+abbr {
+    cursor: pointer;
 }
