@@ -1,6 +1,6 @@
 :root {
     --color-accent: color-mix(in oklch, oklch(0.8086 0.0954 267.19), canvas 85%);
-    color-scheme: light;
+    color-scheme: dark;
 }
 
 body {
@@ -38,27 +38,6 @@ nav a:hover {
 
 .current {
     border-bottom: 0.2em solid oklch(50% 10% 200 / 40%);
-}
-
-form {
-    display: grid;
-    grid-template-columns: auto 1fr;
-}
-
-form input, form textarea, form button {
-    font: inherit;
-}
-
-form label {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-column: 1 / -1;
-    gap: 1em;
-    padding: 0.4em;
-}
-
-form button {
-    grid-column: 1 / -1;
 }
 
 .projects {
@@ -139,78 +118,12 @@ h2, h3, h4, h5, h6 {
     text-wrap: pretty;
 }
 
-label.color-scheme {
-    font-family: inherit;
-    font-size: 85%;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-}
-
-#profile-stats dl {
-    display: grid;
-    column-gap: 48px;
-}
-
-#profile-stats dt {
-    grid-row: 1;
-    font-size: 12px;
-    font-family: inherit;
-    color: lightslategray;
-}
-
-#profile-stats dd {
-    grid-row: 2;
-    margin: 0;
-    font-size: 20px;
-}
-
-#projects-plot {
-    width: 40%;
-    max-width: 20em;
-    overflow: visible;
-}
-
 .swatch {
     display: inline-flex;
     width: 20px;
     aspect-ratio: 1 / 1;
     background-color: var(--color);
     border-radius: 50%;
-}
-
-.legend {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
-    align-items: center;
-    list-style-type: none;
-    gap: 16px;
-    padding: 16px;
-    border: 3px solid var(--color-accent);
-    border-radius: 10px;
-    flex: 1;
-}
-
-#key {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: auto;
-    padding: 10px;
-}
-
-#key em {
-    color: gray;
-    font-size: 12px;
-}
-
-.container {
-    display: flex;
-    width: 100%;
-    gap: 24px;
-    align-items: center;
-    margin-block: 2rem;
 }
 
 &:has(path:hover) {
@@ -243,151 +156,4 @@ path {
     margin: 0 0 32px 0;
     font-family: inherit;
     text-align: center;
-}
-
-#meta-stats dl {
-    display: grid;
-    column-gap: 48px;
-}
-
-#meta-stats dt {
-    grid-row: 1;
-    font-size: 12px;
-    font-family: inherit;
-    color: lightslategray;
-}
-
-#meta-stats dd {
-    grid-row: 2;
-    margin: 0;
-    font-size: 20px;
-}
-
-.gridlines {
-    opacity: 0.4;
-}
-
-dl.info {
-    display: grid;
-    transition-duration: 500ms;
-    transition-property: opacity, visibility;
-    column-gap: 12px;
-    padding: 12px;
-}
-
-dl.info[hidden]:not(:hover, :focus-within) {
-    opacity: 0;
-    visibility: hidden;
-}
-
-dl.info dt {
-    grid-row: 1;
-    margin: 0;
-    font-size: 10px;
-    color: lightslategray;
-    font-family: inherit;
-}
-
-dl.info dd {
-    grid-row: 2;
-    margin: 0;
-    font-size: 14px;
-    font-family: inherit;
-}
-
-.tooltip {
-    position: fixed;
-    top: 1em;
-    left: 1em;
-    box-shadow: 0 0 4px lightslategray;
-    border-radius: 10px;
-    backdrop-filter: blur(2px);
-}
-
-circle {
-    transition: 200ms;
-    transform-origin: center;
-    transform-box: fill-box;
-
-    @starting-style {
-        r: 0;
-    }
-}
-
-circle:hover {
-    transform: scale(1.5);
-}
-
-@keyframes marching-ants {
-    to {
-      stroke-dashoffset: -8; /* 5 + 3 */
-    }
-}
-  
-.selection {
-    fill-opacity: 0.1;
-    stroke: black;
-    stroke-opacity: 0.7;
-    stroke-dasharray: 5 3;
-    animation: marching-ants 0.5s linear infinite;
-}
-
-circle.selected {
-    fill: #ff6b6b;
-}
-
-#selection-count {
-    text-align: center;
-    font-size: 14px;
-    color: lightslategray;
-    margin: 16px 0 32px 0;
-}
-
-#language-breakdown {
-    display: grid;
-    text-align: center;
-    column-gap: 32px;
-    row-gap: 2px;
-}
-
-#language-breakdown dt {
-    grid-row: 1;
-    font-size: 12px;
-    font-family: inherit;
-    color: lightslategray;
-}
-
-#language-breakdown dd {
-    grid-row: 2;
-    margin: 0;
-    font-size: 20px;
-}
-
-hr.separator {
-    margin: 32px 0 32px 0;
-}
-
-#commit-filter {
-    flex: 1;
-    align-items: baseline;
-    width: 100%;
-    font-size: 12px;
-    text-align: right;
-    margin: 0;
-}
-
-#commit-filter input {
-    width: 86%;
-    height: 6px;
-    align-self: second baseline;
-}
-
-#commit-filter time {
-    display: block;
-    margin-left: auto;
-    font-size: 12px;
-}
-
-abbr {
-    cursor: pointer;
 }

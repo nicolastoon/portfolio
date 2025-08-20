@@ -1,5 +1,14 @@
 [
     {
+        "title": "paper petals",
+        "year": "2025",
+        "org": "",
+        "tags": ["web development"],
+        "image": "images/paper-petals.jpg",
+        "link": "https://nicolastoon.github.io/flowering/",
+        "description": "A React application built for a local creative mind, showcasing their collection of handmade origami flowers"
+    },
+    {
         "title": "Stage Left: Typing with Parkinson's",
         "year": "2025",
         "org": "DSC 106",
