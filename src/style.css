@@ -1,0 +1,166 @@
+:root {
+  --color-accent: color-mix(in oklch, oklch(0.8086 0.0954 267.19), canvas 85%);
+  color-scheme: dark;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter-VariableFont_opsz,wght.ttf");
+  font-display: swap;
+}
+
+body {
+  /* Set line height to 1.5 times the font size
+    and use the OS’s UI font as the website font */
+  font: 100%/1.5 "Inter", Helvetica, sans-serif;
+  max-width: 100ch;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10ch;
+  padding-right: 10ch;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+  margin: 3vh;
+}
+
+#headshot {
+  border-radius: 100%;
+  width: 5rem;
+  object-fit: cover;
+}
+
+#desc {
+  text-align: center;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-accent);
+  padding: 0.5em;
+  gap: 0.3em;
+  box-shadow: 0 0 3px lightslategray;
+  border-radius: 4px;
+  margin-block: 1rem;
+}
+
+.projects article {
+  display: grid;
+  grid-template-columns: 15em 1fr;
+  gap: 1em;
+  padding: 0.6em;
+  margin: 0.6em;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 3px lightslategray;
+  border-radius: 4px;
+}
+
+.projects article .tags {
+  display: flex;
+  margin: 12px 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 0.8em;
+}
+
+.projects article .tag {
+  padding: 0.5em 1em;
+  font-family: inherit;
+  font-size: 12px;
+  border-radius: 16px;
+  background-color: color-mix(
+    in oklch,
+    oklch(0.8086 0.0954 267.19),
+    canvas 60%
+  );
+  box-shadow: 0 0 2px lightgray;
+}
+
+.projects article .info {
+  color: gray;
+  font-size: 12px;
+}
+
+.projects article img {
+  border: solid 1px lightgray;
+  border-radius: 4px;
+}
+
+.projects article h2 {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.projects article p {
+  font-size: 14px;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.projects a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h2 a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  text-wrap: pretty;
+}
+
+.swatch {
+  display: inline-flex;
+  width: 20px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 50%;
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.selected {
+  --color: oklch(0.29 0.1423 296.21) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+
+  &:is(span) {
+    border: 1px solid red;
+  }
+}
+
+.searchBar {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  margin: 0 0 32px 0;
+  font-family: inherit;
+  text-align: center;
+}
