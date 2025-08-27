@@ -1,14 +1,14 @@
-import Projects from "./components/Projects.tsx";
-import Picture from "./components/Picture.tsx";
-import Name from "./components/Name.tsx";
+import Navigation from "./components/Navigation.tsx";
+import About from "./components/About.tsx"
+import TechStack from "./components/TechStack.tsx";
 import Links from "./components/Links.tsx";
 
 export default function App() {
   return (
     <div id="panel-container">
-      <Projects />
-      <Picture />
-      <Name />
+      <Navigation />
+      <About />
+      <TechStack />
       <Links />
     </div>
   );

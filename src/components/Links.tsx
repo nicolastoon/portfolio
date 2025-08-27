@@ -1,4 +1,5 @@
 import Button from "./Button.tsx";
+import { Mail } from "lucide-react";
 
 export default function Links() {
   const links = [
@@ -24,7 +25,8 @@ export default function Links() {
           </svg>
         </>
       ),
-      url: "https://www.linkedin.com/in/nicolastoon/",
+      action: "https://www.linkedin.com/in/nicolastoon/",
+      name: "li/nicolastoon",
     },
     {
       id: "link-02",
@@ -47,18 +49,25 @@ export default function Links() {
           </svg>
         </>
       ),
-      url: "https://github.com/nicolastoon",
+      action: "https://github.com/nicolastoon",
+      name: "gh/nicolastoon",
+    },
+    {
+      id: "link-03",
+      icon: () => <Mail />,
+      action: "mailto:nicolastoon05@gmail.com",
+      name: "nicolastoon05@gmail.com",
     },
   ];
 
   function getButtons() {
     return links.map((link) => (
-      <Button key={link.id} icon={link.icon()} url={link.url} />
+      <Button key={link.id} icon={link.icon()} action={link.action} name={link.name} type="links"/>
     ));
   }
 
   return (
-    <div className="panel" id="links-panel">
+    <div className="panel button-panel" id="links">
       {getButtons()}
     </div>
   );

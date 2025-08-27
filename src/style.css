@@ -28,21 +28,26 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Inter Tight";
+  src: url("/fonts/Inter_Tight/InterTight-VariableFont_wght.ttf") format("truetype");
+  font-display: swap;
+}
+
 body {
   font: 100%/1.5 "Figtree", sans-serif;
   max-width: 100ch;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 10ch;
-  padding-right: 10ch;
+  padding-left: 20ch;
+  padding-right: 20ch;
   background-color: #f4f3ee;
   color: #463f3a;
 }
 
 #panel-container {
-  display: grid;
-  grid-template-columns: 30vh 30vh auto;
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 0.5em;
 }
@@ -53,50 +58,52 @@ body {
   background-color: rgba(188, 184, 177, 0.4);
 }
 
-#header-panel {
-  display: flex;
-  flex-direction: column;
+#header {
+  display: grid;
+  flex-direction: row;
   justify-content: center;
   align-content: center;
-  text-align: center;
-  gap: 0.1em;
-  padding: 1em 0 1em 0;
+  gap: 1em;
+  padding: 20vh 0 20vh 0;
   width: 100%;
-  grid-column: 2 / span 1;
-  grid-row: 3 / span 1;
+
+  #name-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    grid-column-start: 2;
+  }
 
   #fullname {
     margin: 0;
-    font-family: "Figtree";
-    font-size: 2rem;
-    font-weight: 500;
+    font-family: "Inter Tight";
+    font-size: 3rem;
+    font-weight: 700;
   }
 
-  #location {
+  .title {
     display: flex;
     font-family: inherit;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
     gap: 0.2em;
+    font-size: 0.8rem;
     font-weight: 300;
   }
 }
 
 #headshot {
-  width: 30vh;
-  border-radius: 1em;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 100%;
   object-fit: cover;
-  grid-row: 1 / span 2;
-  grid-column: 2 / span 1;
+  grid-column-start: 1;
 }
 
-#links-panel {
+.button-panel {
   display: flex;
+  position: absolute;
   flex-direction: column;
-  padding: 1em 0 1em 0;
-  grid-column: 3 / span 1;
-  grid-row: 1 / span 3;
+  padding: 1em;
   gap: 1em;
   background: transparent;
 
@@ -106,29 +113,90 @@ body {
   }
 }
 
+#links {
+  bottom: 0;
+  right: 0;
+}
+
+#navigation {
+  top: 0;
+  left: 0;
+}
+
+.button-label {
+  display: none;
+}
+
 .link {
   display: inline-flex;
   margin: 0 0.5em;
   padding: 0;
-  align-items: center;
   justify-content: center;
   border: 2px solid #463f3a;
-  align-items: center;
   background-color: transparent;
   border-radius: 100%;
   cursor: pointer;
+  transition: ease-in-out 0.3s;
 }
 
-#projects-panel {
-  padding: 1em 0 1em 0;
-  width: 100%;
-  grid-column: 1 / span 1;
-  grid-row: 1 / span 3;
+#techstack {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1em;
 
-  #projects-header {
+  #techstack-title {
+    font-family: "Inter Tight";
     text-align: center;
+    font-size: 1.7rem;
+    font-weight: 300;
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: 500;
   }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.techstack-container {
+  display: inline-flex;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 10vh;
+  align-items: center;
+}
+
+.techstack-slider {
+  display: inline-flex;
+  animation: 9s slide linear infinite;
+  height: fit-content;
+  align-items: center;
+}
+
+.techstack-container:hover .techstack-slider {
+  animation-play-state: paused;
+}
+
+.techstack-icon {
+  width: 64px;
+  height: 64px;
+  padding: 0.5em;
+}
+
+#techstack-tooltip {
+  position: absolute;
+  background-color: rgba(70, 63, 58, 0.9);
+  height: fit-content;
+  color: #f4f3ee;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
