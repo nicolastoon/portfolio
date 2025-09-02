@@ -1,3 +1,5 @@
+import Links from "./Links.tsx";
+
 export default function Name() {
   return (
     <div id="header">
@@ -13,6 +15,7 @@ export default function Name() {
         <span className="title">
           FULL STACK DEVELOPER // MACHINE LEARNING ENGINEER
         </span>
+        <Links />
       </div>
     </div>
   );

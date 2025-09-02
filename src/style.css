@@ -30,7 +30,8 @@
 
 @font-face {
   font-family: "Inter Tight";
-  src: url("/fonts/Inter_Tight/InterTight-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Inter_Tight/InterTight-VariableFont_wght.ttf")
+    format("truetype");
   font-display: swap;
 }
 
@@ -60,18 +61,19 @@ body {
 
 #header {
   display: grid;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-content: center;
-  gap: 1em;
-  padding: 20vh 0 20vh 0;
+  gap: 3em;
   width: 100%;
+  padding: 30vh 0 30vh 0;
 
   #name-container {
     display: flex;
     flex-direction: column;
     text-align: left;
     grid-column-start: 2;
+    height: 20vh;
+    justify-content: space-evenly;
   }
 
   #fullname {
@@ -79,6 +81,7 @@ body {
     font-family: "Inter Tight";
     font-size: 3rem;
     font-weight: 700;
+    line-height: 1;
   }
 
   .title {
@@ -92,8 +95,8 @@ body {
 }
 
 #headshot {
-  width: 6rem;
-  height: 6rem;
+  width: 20vh;
+  height: 20vh;
   border-radius: 100%;
   object-fit: cover;
   grid-column-start: 1;
@@ -101,9 +104,6 @@ body {
 
 .button-panel {
   display: flex;
-  position: absolute;
-  flex-direction: column;
-  padding: 1em;
   gap: 1em;
   background: transparent;
 
@@ -114,11 +114,13 @@ body {
 }
 
 #links {
-  bottom: 0;
-  right: 0;
+  position: relative;
+  flex-direction: row;
 }
 
 #navigation {
+  position: absolute;
+  flex-direction: column;
   top: 0;
   left: 0;
 }
@@ -129,7 +131,7 @@ body {
 
 .link {
   display: inline-flex;
-  margin: 0 0.5em;
+  margin: 0;
   padding: 0;
   justify-content: center;
   border: 2px solid #463f3a;
@@ -144,14 +146,14 @@ body {
   flex-direction: column;
   align-items: left;
   gap: 1em;
+}
 
-  #techstack-title {
-    font-family: "Inter Tight";
-    text-align: center;
-    font-size: 1.7rem;
-    font-weight: 300;
-    margin: 0;
-  }
+h2 {
+  font-family: inherit;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0;
 }
 
 @keyframes slide {
@@ -199,4 +201,39 @@ body {
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+.scroll-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  margin: 10vh auto;
+  opacity: 0.7;
+}
+
+#projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  padding: 1em;
+  align-items: center;
+
+  img {
+    width: 30vh;
+    height: 20vh;
+    border-radius: 1em;
+    object-fit: cover;
+  }
+
+  .info {
+    font-size: 0.7em;
+  }
 }
