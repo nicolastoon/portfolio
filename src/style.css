@@ -1,7 +1,6 @@
 :root {
   --color-accent: color-mix(in oklch, oklch(0.8086 0.0954 267.19), canvas 85%);
   color-scheme: light;
-  height: 100%;
 }
 
 @font-face {
@@ -37,20 +36,19 @@
 
 body {
   font: 100%/1.5 "Figtree", sans-serif;
-  max-width: 100ch;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20ch;
-  padding-right: 20ch;
+  margin: 0;
   background-color: #f4f3ee;
   color: #463f3a;
+  overflow-y: scroll;
 }
 
-#panel-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5em;
+section {
+  padding: 0 5vw;
+  margin-bottom: 10vh;
+}
+
+#front-page {
+  height: 100vh;
 }
 
 .panel {
@@ -63,9 +61,10 @@ body {
   display: grid;
   justify-content: left;
   align-content: center;
+  height: 80vh;
+  scroll-snap-align: start;
   gap: 3em;
-  width: 100%;
-  padding: 30vh 0 30vh 0;
+  width: fit-content;
 
   #name-container {
     display: flex;
@@ -78,15 +77,14 @@ body {
 
   #fullname {
     margin: 0;
-    font-family: "Inter Tight";
     font-size: 3rem;
     font-weight: 700;
     line-height: 1;
+    letter-spacing: -0.02em;
   }
 
   .title {
     display: flex;
-    font-family: inherit;
     flex-direction: row;
     gap: 0.2em;
     font-size: 0.8rem;
@@ -94,7 +92,7 @@ body {
   }
 }
 
-#headshot {
+#avatar {
   width: 20vh;
   height: 20vh;
   border-radius: 100%;
@@ -203,37 +201,93 @@ h2 {
   transition: opacity 0.3s ease-in-out;
 }
 
-.scroll-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.lucide-circle-arrow-down {
+  display: block;
   width: fit-content;
   height: fit-content;
-  margin: 10vh auto;
+  margin: 0 auto;
   opacity: 0.7;
 }
 
 #projects-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1em;
 }
 
-.project-content {
+#project-names {
   display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.project-name {
+  width: 100%;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 800;
+  opacity: 0.3;
+  padding: 1rem 0;
+}
+
+#project-info-container {
+  display: block;
+  flex-direction: column;
+  align-self: center;
+  width: 50%;
+  visibility: hidden;
+}
+
+#project-info-img {
+  display: block;
+  position: relative;
+  margin-left: auto;
+  width: 70%;
+  object-fit: cover;
+  border-radius: 1em;
+  z-index: 2;
+  border: 1.5px solid black;
+}
+
+#project-info {
+  display: flex;
+  position: relative;
+  top: -1rem;
+  width: 90%;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 2em 1em;
+  justify-content: space-evenly;
+
+  span {
+    display: inline-flex;
+    gap: 0.5em;
+    font-size: 0.8rem;
+    font-weight: 400;
+    align-items: center;
+
+    .lucide {
+      stroke-width: 1.7px;
+      width: 1.2rem;
+    }
+  }
+}
+
+#project-info-tags {
+  display: inline-flex;
+  gap: 0.4em;
+  flex-wrap: wrap;
   flex-direction: row;
-  gap: 1em;
-  padding: 1em;
-  align-items: center;
+}
 
-  img {
-    width: 30vh;
-    height: 20vh;
-    border-radius: 1em;
-    object-fit: cover;
-  }
+.project-info-tag {
+  background-color: #BCB8B1;
+  padding: 0.1em 0.6em;
+  border-radius: 0.5em;
+  font-size: 0.8rem;
+}
 
-  .info {
-    font-size: 0.7em;
-  }
+#project-info-description {
+  display: block;
+  font-size: 1rem;
 }

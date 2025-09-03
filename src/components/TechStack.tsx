@@ -84,13 +84,13 @@ export default function TechStack() {
   }
 
   return (
-    <div id="techstack">
-      <h2 id="techstack-title">TECH // STACK</h2>
+    <section id="techstack">
+      <h2 id="techstack-title">(TECHSTACK)</h2>
       <div className="techstack-container">
         <Tooltip />
         <div className="techstack-slider">{renderIcons(apps)}</div>
         <div className="techstack-slider">{renderIcons(apps)}</div>
       </div>
-    </div>
+    </section>
   );
 }
