@@ -1,5 +1,4 @@
 :root {
-  --color-accent: color-mix(in oklch, oklch(0.8086 0.0954 267.19), canvas 85%);
   color-scheme: light;
 }
 
@@ -54,7 +53,9 @@ section {
 .panel {
   border-radius: 1em;
   font-family: inherit;
+  /* #BCB8B1 at 40% opacity */
   background-color: rgba(188, 184, 177, 0.4);
+  padding: 1em;
 }
 
 #header {
@@ -228,6 +229,18 @@ h2 {
   font-weight: 800;
   opacity: 0.3;
   padding: 1rem 0;
+  transition: all 0.25s linear;
+}
+
+.project-name.focused {
+  opacity: 1;
+  transform: translateX(2rem);
+}
+
+#product-link:hover {
+  cursor: pointer;
+  transform: translateX(-5.2rem);
+  transition: transform 0.25s ease-in-out;
 }
 
 #project-info-container {
@@ -235,7 +248,6 @@ h2 {
   flex-direction: column;
   align-self: center;
   width: 50%;
-  visibility: hidden;
 }
 
 #project-info-img {
@@ -247,6 +259,8 @@ h2 {
   border-radius: 1em;
   z-index: 2;
   border: 1.5px solid black;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
 }
 
 #project-info {
@@ -256,8 +270,7 @@ h2 {
   width: 90%;
   flex-direction: column;
   gap: 0.5em;
-  padding: 2em 1em;
-  justify-content: space-evenly;
+  padding: 2em 2em 1em 2em;
 
   span {
     display: inline-flex;
@@ -265,12 +278,17 @@ h2 {
     font-size: 0.8rem;
     font-weight: 400;
     align-items: center;
+    pointer-events: none;
 
     .lucide {
       stroke-width: 1.7px;
       width: 1.2rem;
     }
   }
+}
+
+#project-info:hover {
+  cursor: pointer;
 }
 
 #project-info-tags {
@@ -281,13 +299,65 @@ h2 {
 }
 
 .project-info-tag {
-  background-color: #BCB8B1;
+  display: inline-flex;
+  gap: 0.3em;
+  align-items: center;
+  background-color: #9FBBE0;
   padding: 0.1em 0.6em;
   border-radius: 0.5em;
   font-size: 0.8rem;
+  height: 24px; 
+}
+
+#project-info-tags .project-info-tag.special {
+  background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(222,168,248,1) 0%, rgba(168,222,258,1) 21.9%, rgba(189,250,205,1) 35.6%, rgba(243,250,189,1) 53.9%, rgba(250,227,189,1) 66.8%, rgba(248,172,171,1) 95%, rgba(254,170,212,1) 99.9% );
+  pointer-events: auto;
+  transition: all 0.25s ease-in-out;
+
+  .lucide {
+    stroke-width: 3px;
+    width: 0.5rem;
+  }
+}
+
+#project-info-tags .project-info-tag.special:hover {
+  transform: scale(1.2);
 }
 
 #project-info-description {
   display: block;
   font-size: 1rem;
+}
+
+#source-code {
+  display: block;
+  width: 4rem;
+  position: relative;
+  left: 80%;
+  top: 5rem;
+  transition: transform 0.3s ease-out;
+}
+
+#source-code.active {
+  top: 2.7rem;
+  cursor: pointer;
+}
+
+#source-code:hover {
+  transform: translateY(-10%);
+}
+
+#project-info-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+
+  svg {
+    padding: 1em 0 1em 0;
+  }
+
+  path {
+    stroke-width: 2px;
+    transition: all 1s cubic-bezier(0.43, 0.47, 0, 1);
+  }
 }

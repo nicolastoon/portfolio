@@ -6,7 +6,6 @@ export default function FrontPage() {
     <section id="front-page">
       <div id="header">
         <img
-          className="panel"
           id="avatar"
           src="/portfolio/images/moi.jpg"
           alt="picture of me!"
