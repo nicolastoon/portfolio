@@ -58,7 +58,7 @@ export default function Projects() {
       <div
         className="project-name"
         onMouseEnter={(e) => hoverName(e)}
-        // onMouseLeave={(e) => unhoverName(e)}
+        onMouseLeave={(e) => unhoverName(e)}
         key={p.title}
       >
         {p.title}
