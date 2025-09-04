@@ -1,5 +1,5 @@
 import projects from "../../lib/projects.json";
-import { Calendar, Briefcase, Link } from "lucide-react";
+import { Calendar, Briefcase, Link, Minus } from "lucide-react";
 import { useState } from "react";
 
 type ProjectObject = {
@@ -99,7 +99,8 @@ export default function Projects() {
 
   return (
     <section id="projects">
-      <h2 id="projects-title">(PROJECTS)</h2>
+      <h2 className="section-title" id="projects-title">(PROJECTS)</h2>
+      <span className="section-title-divider"><Minus /></span>
       <div id="projects-container">
         <div id="project-names">{generateProjectNames()}</div>
         <div id="project-info-container">

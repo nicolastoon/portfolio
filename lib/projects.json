@@ -19,7 +19,18 @@
     "link": "",
     "sourceCode": "",
     "specialLink": "",
-    "description": "A React application built for a local creative mind, showcasing their collection of handmade origami flowers"
+    "description": "A React application built for a local creative mind, showcasing their collection of handmade origami flowers."
+  },
+  {
+    "title": "Portfolio v1",
+    "year": "(IN PROGRESS)",
+    "org": "Personal",
+    "tags": ["web development"],
+    "image": "portfolio/images/portfolio.png",
+    "link": "https://nicolastoon.github.io/portfolio/",
+    "sourceCode": "https://github.com/nicolastoon/portfolio",
+    "specialLink": "",
+    "description": "The website you are currently on! A React + TypeScript application built to showcase my projects and my playground for frontend development."
   },
   {
     "title": "Stage Left: Typing with Parkinson's",
@@ -64,16 +75,5 @@
     "sourceCode": "https://github.com/nicolastoon/analyzing-recipe-tags",
     "specialLink": "",
     "description": "A write-up of the data science pipeline investigating different aspects and creating a predictive model about online recipes."
-  },
-  {
-    "title": "Siblings on Academic Motivation",
-    "year": "2023",
-    "org": "AP Research",
-    "tags": ["research"],
-    "image": "portfolio/images/siblings.jpg",
-    "link": "https://drive.google.com/file/d/1SoWHdY74Q3zqs5IPaSZjVD3pYx3G1Ufp/view",
-    "sourceCode": "",
-    "specialLink": "",
-    "description": "School is difficult, but can the siblings you frustratingly put up with actually help in your endeavors? This is an in-depth paper researching whether the presence of siblings affects a student's motivation in school."
   }
 ]

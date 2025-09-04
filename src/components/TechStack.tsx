@@ -1,4 +1,5 @@
 import Tooltip from "./Tooltip.tsx";
+import { Minus } from "lucide-react";
 
 export default function TechStack() {
   const apps = [
@@ -87,7 +88,8 @@ export default function TechStack() {
 
   return (
     <section id="techstack">
-      <h2 id="techstack-title">(TECHSTACK)</h2>
+      <h2 className="section-title" id="techstack-title">(TECHSTACK)</h2>
+      <span className="section-title-divider"><Minus /></span>
       <div className="techstack-container">
         <Tooltip />
         <div className="techstack-slider">{renderIcons(apps)}</div>
