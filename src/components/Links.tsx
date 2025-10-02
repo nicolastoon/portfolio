@@ -62,12 +62,12 @@ export default function Links() {
 
   function getButtons() {
     return links.map((link) => (
-      <Button key={link.id} icon={link.icon()} action={link.action} name={link.name} type="links"/>
+      <Button key={link.id} icon={link.icon()} action={link.action} name={link.name} />
     ));
   }
 
   return (
-    <div className="panel button-panel" id="links">
+    <div className="button-panel" id="links">
       {getButtons()}
     </div>
   );

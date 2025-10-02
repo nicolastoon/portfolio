@@ -1,10 +1,24 @@
-import { Minus } from "lucide-react";
+import Background from "./Background.tsx";
+import { CircleArrowDown } from "lucide-react";
+import FrontPage from "./FrontPage.tsx";
+import Create from "./Create.tsx";
+import Design from "./Design.tsx";
+import Analyze from "./Analyze.tsx";
+import Code from "./Code.tsx";
 
 export default function About() {
   return (
-    <section id="about">
-      <h2 className="section-title" id="about-me-title">(ABOUT ME)</h2>
-      <span className="section-title-divider"><Minus /></span>
-    </section>
-  )
+    <>
+      <Background />
+      <FrontPage />
+      <CircleArrowDown />
+      <div id="about-sections">
+        <Analyze />
+        <Design />
+        <Code />
+      </div>
+      <CircleArrowDown />
+      <Create />
+    </>
+  );
 }

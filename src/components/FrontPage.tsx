@@ -1,5 +1,4 @@
 import Links from "./Links.tsx";
-import { CircleArrowDown } from 'lucide-react';
 
 export default function FrontPage() {
   return (
@@ -19,7 +18,6 @@ export default function FrontPage() {
           <Links />
         </div>
       </div>
-      <CircleArrowDown />
     </section>
   );
 }

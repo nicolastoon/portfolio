@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "homepage": "",
+  "homepage": "/portfolio",
   "private": false,
   "version": "0.0.0",
   "type": "module",
@@ -21,6 +21,7 @@
     "lucide-react": "^0.541.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.9.3",
     "tsparticles-engine": "^2.12.0"
   },
   "devDependencies": {

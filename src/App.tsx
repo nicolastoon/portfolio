@@ -1,18 +1,19 @@
 // import Navigation from "./components/Navigation.tsx";
-import FrontPage from "./components/FrontPage.tsx";
-import TechStack from "./components/TechStack.tsx";
 import About from "./components/About.tsx";
 import Projects from "./components/Projects.tsx";
-import Background from "./components/Background.tsx"
+import Navigation from "./components/Navigation.tsx";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 export default function App() {
   return (
     <>
-      <Background />
-      <FrontPage />
-      <Projects />
-      <About />
-      <TechStack />
+      <Navigation />
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<About />}></Route>
+          <Route path="/projects" element={<Projects />}></Route>
+        </Routes>
+      </HashRouter>
     </>
   );
 }

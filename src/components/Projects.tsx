@@ -1,5 +1,6 @@
 import projects from "../../lib/projects.json";
-import { Calendar, Briefcase, Link, Minus } from "lucide-react";
+import Background from "./Background.tsx";
+import { Calendar, Briefcase, Link } from "lucide-react";
 import { useState } from "react";
 
 type ProjectObject = {
@@ -98,52 +99,65 @@ export default function Projects() {
   let [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <section id="projects">
-      <h2 className="section-title" id="projects-title">(PROJECTS)</h2>
-      <span className="section-title-divider"><Minus /></span>
-      <div id="projects-container">
-        <div id="project-names">{generateProjectNames()}</div>
-        <div id="project-info-container">
-          <img
-            className={
-              projects[selectedIndex].sourceCode
-                ? "source-code-link active"
-                : "source-code-link"
-            }
-            id="source-code"
-            src="/portfolio/images/robot.svg"
-            onClick={() =>
-              window.open(
+    <>
+      <Background />
+      <section id="projects">
+        <h2 className="section-title" id="projects-title">
+          Building...
+        </h2>
+        <div id="projects-container">
+          <div id="project-names">{generateProjectNames()}</div>
+          <div id="project-info-container">
+            <img
+              className={
                 projects[selectedIndex].sourceCode
-                  ? projects[selectedIndex].sourceCode
-                  : "_blank"
-              )
-            }
-          />
-          <img id="project-info-img" src={projects[selectedIndex].image} />
-          <div
-            className="panel"
-            id="project-info"
-            onMouseOver={animateArrow}
-            onMouseOut={resetArrow}
-            onClick={() => window.open(projects[selectedIndex].link, "_blank")}
-          >
-            <div id="project-info-tags">
-              {generateTags(projects[selectedIndex].tags, projects[selectedIndex])}
+                  ? "source-code-link active"
+                  : "source-code-link"
+              }
+              id="source-code"
+              src="/portfolio/images/robot.svg"
+              onClick={() =>
+                window.open(
+                  projects[selectedIndex].sourceCode
+                    ? projects[selectedIndex].sourceCode
+                    : "_blank"
+                )
+              }
+            />
+            <img id="project-info-img" src={projects[selectedIndex].image} />
+            <div
+              className="panel"
+              id="project-info"
+              onMouseOver={animateArrow}
+              onMouseOut={resetArrow}
+              onClick={() =>
+                window.open(projects[selectedIndex].link, "_blank")
+              }
+            >
+              <div id="project-info-tags">
+                {generateTags(
+                  projects[selectedIndex].tags,
+                  projects[selectedIndex]
+                )}
+              </div>
+              <span id="project-info-year">
+                <Calendar />
+                {projects[selectedIndex].year}
+              </span>
+              <span id="project-info-org">
+                <Briefcase />
+                {projects[selectedIndex].org}
+              </span>
+              <div id="project-info-description">
+                {projects[selectedIndex].description}
+              </div>
+              {projects[selectedIndex].link
+                ? ProjectLinkArrow(projects[selectedIndex])
+                : null}
             </div>
-            <span id="project-info-year">
-              <Calendar />
-              {projects[selectedIndex].year}
-            </span>
-            <span id="project-info-org">
-              <Briefcase />
-              {projects[selectedIndex].org}
-            </span>
-            <div id="project-info-description">{projects[selectedIndex].description}</div>
-            {projects[selectedIndex].link ? ProjectLinkArrow(projects[selectedIndex]) : null}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

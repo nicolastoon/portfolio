@@ -34,7 +34,7 @@
 }
 
 body {
-  font: 100%/1.5 "Figtree", sans-serif;
+  font: 110%/1.5 "Figtree", sans-serif;
   margin: 0;
   background-color: transparent;
   color: #463f3a;
@@ -60,12 +60,12 @@ body {
 }
 
 section {
-  padding: 0 5vw;
-  margin-bottom: 10vh;
+  padding: 0 10vw;
+  height: fit-content;
 }
 
 #front-page {
-  height: 100vh;
+  height: 60vh;
 }
 
 .panel {
@@ -78,12 +78,11 @@ section {
 
 #header {
   display: grid;
-  justify-content: left;
+  justify-content: center;
   align-content: center;
-  height: 80vh;
-  scroll-snap-align: start;
-  gap: 3em;
-  width: fit-content;
+  height: 70vh;
+  gap: 6em;
+  width: 100%;
 
   #name-container {
     display: flex;
@@ -92,12 +91,13 @@ section {
     grid-column-start: 2;
     height: 20vh;
     justify-content: space-evenly;
+    align-self: center;
   }
 
   #fullname {
     margin: 0;
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -111,18 +111,24 @@ section {
   }
 }
 
+img {
+  box-shadow: 0 0 5px 2px lightgray;
+}
+
 #avatar {
-  width: 20vh;
-  height: 20vh;
+  width: 30vh;
+  height: 30vh;
   border-radius: 100%;
   object-fit: cover;
   grid-column-start: 1;
 }
 
 .button-panel {
+  position: relative;
   display: flex;
   gap: 1em;
   background: transparent;
+  flex-direction: row;
 
   .lucide {
     padding: 0.5em;
@@ -130,38 +136,191 @@ section {
   }
 }
 
-#links {
-  position: relative;
-  flex-direction: row;
-}
-
 #navigation {
-  position: absolute;
+  position: sticky;
   flex-direction: column;
-  top: 0;
-  left: 0;
-}
-
-.button-label {
-  display: none;
+  z-index: 2;
+  top: 1em;
+  left: 1em;
+  width: fit-content;
 }
 
 .link {
   display: inline-flex;
+  position: relative;
   margin: 0;
   padding: 0;
   justify-content: center;
   border: 2px solid #463f3a;
   background-color: transparent;
-  border-radius: 100%;
+  border-radius: 24px;
+  min-width: 40px;
   cursor: pointer;
-  transition: ease-in-out 0.3s;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
 }
 
-#techstack {
+.button-label {
+  position: absolute;
+  display: none;
+  left: -600%;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  align-self: center;
+  padding: 0.5em 0.5em 0.5em 0;
+}
+
+#creations-button {
+  position: relative;
+  min-width: 8em;
+  padding: 0.5em 0;
+  align-self: center;
+}
+
+#view-projects-arrow {
+  position: absolute;
+  left: -110%;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  color: #463f3a;
+}
+
+#view-projects-text {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  align-self: center;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  color: #463f3a;
+}
+
+#about-sections {
   display: flex;
   flex-direction: column;
+  gap: 20vh;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#create-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-img-container {
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(6,1fr);
+  position: relative;
+  max-width: 30vw;
+}
+
+#design-img-container {
+  min-height: 20vw;
+}
+
+.about-img {
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+#figma-img {
+  transform: rotate(-10deg);
+  grid-row: 1 / span 4;
+  grid-column: 1 / span 6;
+  z-index: 2;
+}
+
+#typing-test-img {
+  transform: rotate(10deg);
+  grid-row: 2 / span 5;
+  grid-column: 3 / span 6;
+}
+
+#data-cleaning-img {
+  z-index: 3;
+  transform: rotate(15deg);
+  grid-row: 3 / span 3;
+  grid-column: 5 / span 4;
+}
+
+#sql-img {
+  transform: rotate(-15deg);
+  z-index: 2;
+  grid-row: 4 / span 3;
+  grid-column: 1 / span 4;
+}
+
+#portfolio-code-img {
+  transform: rotate(-5deg);
+  grid-row: 1 / span 6;
+  grid-column: 2 / span 5;
+}
+
+#excel-img {
+  transform: rotate(10deg);
+  z-index: 2;
+  grid-row: 3 / span 2;
+  grid-column: 3 / span 7;
+}
+
+#basketball-analysis-img {
+  transform: rotate(-2deg);
+  z-index: 1;
+  grid-row: 1 / span 3;
+  grid-column: 1 / span 7;
+}
+
+#hypothesis-test-img {
+  transform: rotate(-10deg);
+  grid-row: 4 / span 3;
+  grid-column: 1 / span 6;
+}
+
+.about-blurb {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-text {
+  max-width: 30vw;
+  text-wrap: pretty;
+}
+
+#analyze-title {
+  text-align: left;
+}
+
+#design-title {
+  text-align: right;
+}
+
+#design-text {
+  text-align: right;
+}
+
+#code-title {
+  text-align: left;
+}
+
+#create-text {
+  text-align: center;
+  align-self: center;
+}
+
+#create {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: left;
+  height: 100vh;
 }
 
 h2 {
@@ -186,6 +345,8 @@ h2 {
   overflow: hidden;
   white-space: nowrap;
   height: 10vh;
+  max-width: 90%;
+  align-self: center;
   align-items: center;
 }
 
@@ -196,52 +357,30 @@ h2 {
   align-items: center;
 }
 
-.techstack-container:hover .techstack-slider {
-  animation-play-state: paused;
-}
-
 .techstack-icon {
   width: 64px;
   height: 64px;
   padding: 0.5em;
-}
-
-#techstack-tooltip {
-  position: absolute;
-  background-color: rgba(70, 63, 58, 0.9);
-  height: fit-content;
-  color: #f4f3ee;
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  box-shadow: none;
 }
 
 .lucide-circle-arrow-down {
   display: block;
   width: fit-content;
   height: fit-content;
-  margin: 0 auto;
+  margin: 20vh auto;
   opacity: 0.7;
 }
 
 #projects {
-  height: 100vh;
+  height: fit-content;
 }
 
 .section-title {
-  text-align: right;
+  font-family: "Inter";
+  font-weight: 800;
+  text-align: center;
   font-size: 2rem;
-}
-
-.section-title-divider {
-  display: block;
-  width: fit-content;
-  height: fit-content;
-  align-items: center;
-  margin: 0.2em 0 0.5em auto;
 }
 
 #projects-container {
@@ -260,9 +399,10 @@ h2 {
 
 .project-name {
   width: 100%;
+  font-family: "Inter";
   text-align: left;
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
   opacity: 0.3;
   padding: 1rem 0;
   transition: all 0.25s linear;
@@ -339,15 +479,24 @@ h2 {
   display: inline-flex;
   gap: 0.3em;
   align-items: center;
-  background-color: #9FBBE0;
+  background-color: #9fbbe0;
   padding: 0.1em 0.6em;
   border-radius: 0.5em;
   font-size: 0.8rem;
-  height: 24px; 
+  height: 24px;
 }
 
 #project-info-tags .project-info-tag.special {
-  background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(222,168,248,1) 0%, rgba(168,222,258,1) 21.9%, rgba(189,250,205,1) 35.6%, rgba(243,250,189,1) 53.9%, rgba(250,227,189,1) 66.8%, rgba(248,172,171,1) 95%, rgba(254,170,212,1) 99.9% );
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(222, 168, 248, 1) 0%,
+    rgba(168, 222, 258, 1) 21.9%,
+    rgba(189, 250, 205, 1) 35.6%,
+    rgba(243, 250, 189, 1) 53.9%,
+    rgba(250, 227, 189, 1) 66.8%,
+    rgba(248, 172, 171, 1) 95%,
+    rgba(254, 170, 212, 1) 99.9%
+  );
   pointer-events: auto;
   transition: all 0.25s ease-in-out;
 
