@@ -5,7 +5,7 @@ export default function Navigation() {
   }
 
   function unhover(element: HTMLElement) {
-    element.style.color = "#c4a9a1";
+    element.style.color = "var(--primary-accent-color)";
     element.style.textShadow = "none";
   }
 

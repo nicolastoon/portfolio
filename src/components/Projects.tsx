@@ -137,11 +137,11 @@ export default function Projects() {
   function sourceCodeHover(element: HTMLElement) {
     resetArrow();
     element.style.transform = "scale(0.75) rotate(20deg)";
-    element.style.borderColor = "#99786e";
-    element.style.boxShadow = "0 0 5px #dccac4";
+    element.style.borderColor = "var(--primary-accent-highlight)";
+    element.style.boxShadow = "0 0 5px 2px var(--shadow-accent-color)";
     const icon = element.querySelector(".lucide") as HTMLElement;
     if (icon) {
-      icon.style.stroke = "#99786e";
+      icon.style.stroke = "var(--primary-accent-highlight)";
     }
     setTimeout(() => {
       element.style.transform = "scale(0.75) rotate(0deg)";
@@ -149,11 +149,11 @@ export default function Projects() {
   }
 
   function sourceCodeUnhover(element: HTMLElement) {
-    element.style.borderColor = "#c4a9a1";
+    element.style.borderColor = "var(--primary-accent-color)";
     element.style.boxShadow = "none";
     const icon = element.querySelector(".lucide") as HTMLElement;
     if (icon) {
-      icon.style.stroke = "#c4a9a1";
+      icon.style.stroke = "var(--primary-accent-color)";
     }
     animateArrow();
   }

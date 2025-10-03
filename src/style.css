@@ -61,7 +61,7 @@ section {
   font-family: inherit;
   /* border: 2px solid var(--primary-accent-color); */
   background: var(--background-color);
-  box-shadow: 0 0 5px 2px var(--box-shadow-accent-color);
+  box-shadow: 0 0 5px 2px var(--shadow-accent-color);
   padding: 1em;
 }
 
@@ -101,7 +101,7 @@ section {
 }
 
 img {
-  box-shadow: 0 0 5px 2px var(--box-shadow-accent-color);
+  box-shadow: 0 0 5px 2px var(--shadow-accent-color);
 }
 
 #avatar {

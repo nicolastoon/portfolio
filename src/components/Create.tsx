@@ -70,16 +70,16 @@ export default function Create() {
     element.style.boxShadow = "0 0 5px var(--shadow-accent-color)";
     const text = element.querySelector("#view-projects-text") as HTMLElement;
     if (text) {
-      text.style.color = "#99786e";
+      text.style.color = "var(--primary-accent-highlight)";
     }
   }
 
   function unhover(element: HTMLElement) {
-    element.style.borderColor = "#c4a9a1";
+    element.style.borderColor = "var(--primary-accent-color)";
     element.style.boxShadow = "none";
     const text = element.querySelector("#view-projects-text") as HTMLElement;
     if (text) {
-      text.style.color = "#c4a9a1";
+      text.style.color = "var(--primary-accent-color)";
     }
   }
 
