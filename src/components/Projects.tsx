@@ -1,6 +1,5 @@
 import projects from "../../lib/projects.json";
-import Background from "./Background.tsx";
-import { Calendar, Briefcase, Link } from "lucide-react";
+import { Calendar, Briefcase, Link, CodeXml } from "lucide-react";
 import { useState } from "react";
 
 type ProjectObject = {
@@ -28,8 +27,25 @@ export default function Projects() {
           onClick={() =>
             isSpecial ? window.open(project.specialLink, "_blank") : null
           }
+          onPointerEnter={(e) => {
+            if (isSpecial) {
+              const tag = e.currentTarget;
+              resetArrow();
+              tag.style.boxShadow =
+                "0 0 5px 2px var(--shadow-accent-color)";
+              tag.style.border = "1px solid var(--primary-font-color)";
+            }
+          }}
+          onPointerLeave={(e) => {
+            if (isSpecial) {
+              const tag = e.currentTarget;
+              animateArrow();
+              tag.style.boxShadow = "none";
+              tag.style.border = "none";
+            }
+          }}
         >
-          {tag}
+          <span className="project-info-tag-text">{tag}</span>
           {isSpecial ? <Link /> : null}
         </div>
       );
@@ -42,7 +58,7 @@ export default function Projects() {
         className={`project-name ${
           index === selectedIndex ? "focused" : "unfocused"
         }`}
-        onMouseEnter={() => {
+        onPointerEnter={() => {
           setSelectedIndex(index);
         }}
         key={p.title}
@@ -52,14 +68,40 @@ export default function Projects() {
     ));
   }
 
+  function ProjectLinkArrow() {
+    return (
+      <div id="project-info-link">
+        <span id="visit-text">visit</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="200"
+          height="24"
+          viewBox="0 0 200 24"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-move-right-icon lucide-move-right"
+          id="project-info-link-arrow"
+        >
+          <path className="arrow-part" id="arrow-head" d="M7 8L11 12L7 16" />
+          <path className="arrow-part" id="arrow-line" d="M0 12H10" />
+        </svg>
+      </div>
+    );
+  }
+
   function animateArrow() {
     const arrowLine = document.getElementById("arrow-line");
     const arrowHead = document.getElementById("arrow-head");
     if (arrowLine && arrowHead) {
       arrowLine.style.transform = "scaleX(3)";
-      arrowLine.style.stroke = "#618FCC";
-      arrowHead.style.transform = "translateX(62px)";
-      arrowHead.style.stroke = "#618FCC";
+      arrowHead.style.transform = "translateX(21px)";
+      arrowLine.style.stroke = "var(--primary-accent-highlight)";
+      arrowHead.style.stroke = "var(--primary-accent-highlight)";
+    }
+    const text = document.getElementById("visit-text");
+    if (text) {
+      text.style.color = "var(--primary-accent-highlight)";
     }
   }
 
@@ -68,96 +110,100 @@ export default function Projects() {
     const arrowHead = document.getElementById("arrow-head");
     if (arrowLine && arrowHead) {
       arrowLine.style.transform = "scaleX(1)";
-      arrowLine.style.stroke = "currentColor";
+      arrowLine.style.stroke = "var(--primary-accent-color)";
       arrowHead.style.transform = "translateX(0)";
-      arrowHead.style.stroke = "currentColor";
+      arrowHead.style.stroke = "var(--primary-accent-color)";
+    }
+    const text = document.getElementById("visit-text");
+    if (text) {
+      text.style.color = "var(--primary-accent-color)";
     }
   }
 
-  function ProjectLinkArrow(selectedProject: ProjectObject) {
-    return selectedProject.link ? (
-      <div id="project-info-link">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="200"
-          height="24"
-          viewBox="0 0 200 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-move-right-icon lucide-move-right"
-        >
-          <path id="arrow-head" d="M26 8L30 12L26 16" />
-          <path id="arrow-line" d="M0 12H30" />
-        </svg>
+  function SourceCode(sourceCodeLink: string) {
+    return (
+      <div
+        className="link"
+        id="source-code-button"
+        onClick={() => window.open(sourceCodeLink, "_blank")}
+        onPointerEnter={(e) => sourceCodeHover(e.currentTarget)}
+        onPointerLeave={(e) => sourceCodeUnhover(e.currentTarget)}
+      >
+        <CodeXml />
       </div>
-    ) : null;
+    );
+  }
+
+  function sourceCodeHover(element: HTMLElement) {
+    resetArrow();
+    element.style.transform = "scale(0.75) rotate(20deg)";
+    element.style.borderColor = "#99786e";
+    element.style.boxShadow = "0 0 5px #dccac4";
+    const icon = element.querySelector(".lucide") as HTMLElement;
+    if (icon) {
+      icon.style.stroke = "#99786e";
+    }
+    setTimeout(() => {
+      element.style.transform = "scale(0.75) rotate(0deg)";
+    }, 200);
+  }
+
+  function sourceCodeUnhover(element: HTMLElement) {
+    element.style.borderColor = "#c4a9a1";
+    element.style.boxShadow = "none";
+    const icon = element.querySelector(".lucide") as HTMLElement;
+    if (icon) {
+      icon.style.stroke = "#c4a9a1";
+    }
+    animateArrow();
   }
 
   let [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <>
-      <Background />
-      <section id="projects">
-        <h2 className="section-title" id="projects-title">
-          Building...
-        </h2>
-        <div id="projects-container">
-          <div id="project-names">{generateProjectNames()}</div>
-          <div id="project-info-container">
-            <img
-              className={
-                projects[selectedIndex].sourceCode
-                  ? "source-code-link active"
-                  : "source-code-link"
-              }
-              id="source-code"
-              src="/portfolio/images/robot.svg"
-              onClick={() =>
-                window.open(
-                  projects[selectedIndex].sourceCode
-                    ? projects[selectedIndex].sourceCode
-                    : "_blank"
-                )
-              }
-            />
-            <img id="project-info-img" src={projects[selectedIndex].image} />
-            <div
-              className="panel"
-              id="project-info"
-              onMouseOver={animateArrow}
-              onMouseOut={resetArrow}
-              onClick={() =>
-                window.open(projects[selectedIndex].link, "_blank")
-              }
-            >
-              <div id="project-info-tags">
-                {generateTags(
-                  projects[selectedIndex].tags,
-                  projects[selectedIndex]
-                )}
-              </div>
-              <span id="project-info-year">
-                <Calendar />
-                {projects[selectedIndex].year}
-              </span>
-              <span id="project-info-org">
-                <Briefcase />
-                {projects[selectedIndex].org}
-              </span>
-              <div id="project-info-description">
-                {projects[selectedIndex].description}
-              </div>
+    <section id="projects">
+      <h2 className="section-title" id="projects-title">
+        Building...
+      </h2>
+      <div id="projects-container">
+        <div id="project-names">{generateProjectNames()}</div>
+        <div id="project-info-container">
+          <img id="project-info-img" src={projects[selectedIndex].image} />
+          <div
+            className="panel"
+            id="project-info"
+            onPointerEnter={animateArrow}
+            onPointerLeave={resetArrow}
+            onClick={() => window.open(projects[selectedIndex].link, "_blank")}
+          >
+            <div id="project-info-tags">
+              {generateTags(
+                projects[selectedIndex].tags,
+                projects[selectedIndex]
+              )}
+            </div>
+            <span id="project-info-year">
+              <Calendar />
+              {projects[selectedIndex].year}
+            </span>
+            <span id="project-info-org">
+              <Briefcase />
+              {projects[selectedIndex].org}
+            </span>
+            <div id="project-info-description">
+              {projects[selectedIndex].description}
+            </div>
+            <div id="project-links">
               {projects[selectedIndex].link
-                ? ProjectLinkArrow(projects[selectedIndex])
+                ? ProjectLinkArrow()
+                : null}
+              {projects[selectedIndex].sourceCode
+                ? SourceCode(projects[selectedIndex].sourceCode)
                 : null}
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

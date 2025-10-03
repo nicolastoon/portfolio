@@ -7,23 +7,39 @@ type ButtonProps = {
 };
 
 export default function Button({ icon, action, name }: ButtonProps) {
-  function hoverEffect(element: HTMLElement) {
-    element.style.transform = "scale(1.2)";
+  function hover(element: HTMLElement) {
+    element.style.transform = "rotate(20deg)";
+    element.style.borderColor = "var(--primary-accent-highlight)";
+    element.style.boxShadow = "0 0 5px var(--shadow-accent-color)";
+    const icon = element.querySelector(".lucide") as HTMLElement;
+    if (icon) {
+      icon.style.stroke = "var(--primary-accent-highlight)";
+    }
+    setTimeout(() => {
+      element.style.transform = "rotate(0deg)";
+    }, 200);
   }
 
-  function unhoverEffect(element: HTMLElement) {
-    element.style.transform = "scale(1)";
+  function unhover(element: HTMLElement) {
+    element.style.borderColor = "var(--primary-accent-color)";
+    element.style.boxShadow = "none";
+    const icon = element.querySelector(".lucide") as HTMLElement;
+    if (icon) {
+      icon.style.stroke = "var(--primary-accent-color)";
+    }
   }
+
   return (
     <a href={action}>
       <div
         className="link"
         id={`${name}-button`}
-        onMouseEnter={(e) => hoverEffect(e.currentTarget)}
-        onMouseLeave={(e) => unhoverEffect(e.currentTarget)}
+        onPointerEnter={(e) => 
+          hover(e.currentTarget)
+        }
+        onPointerLeave={(e) => unhover(e.currentTarget)}
       >
         {icon}
-        <span className="button-label" id={`${name}-label`}>{name}</span>
       </div>
     </a>
   );

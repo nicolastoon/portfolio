@@ -65,18 +65,22 @@ export default function Create() {
     ));
   }
 
-  function hoverEffect() {
-    document.getElementById("view-projects-arrow")!.style.transform =
-      "translateX(50%)";
-    document.getElementById("view-projects-text")!.style.transform =
-      "translateX(150%)";
+  function hover(element: HTMLElement) {
+    element.style.borderColor = "var(--primary-accent-highlight)";
+    element.style.boxShadow = "0 0 5px var(--shadow-accent-color)";
+    const text = element.querySelector("#view-projects-text") as HTMLElement;
+    if (text) {
+      text.style.color = "#99786e";
+    }
   }
 
-  function unhoverEffect() {
-    document.getElementById("view-projects-arrow")!.style.transform =
-      "translateX(0%)";
-    document.getElementById("view-projects-text")!.style.transform =
-      "translateX(0%)";
+  function unhover(element: HTMLElement) {
+    element.style.borderColor = "#c4a9a1";
+    element.style.boxShadow = "none";
+    const text = element.querySelector("#view-projects-text") as HTMLElement;
+    if (text) {
+      text.style.color = "#c4a9a1";
+    }
   }
 
   return (
@@ -92,28 +96,11 @@ export default function Create() {
         <a href="#/projects" id="creations-link">
           <div
             className="link"
-            id="creations-button"
-            onMouseEnter={hoverEffect}
-            onMouseLeave={unhoverEffect}
+            id="view-projects-button"
+            onPointerEnter={(e) => hover(e.currentTarget)}
+            onPointerLeave={(e) => unhover(e.currentTarget)}
           >
-            <span id="view-projects-arrow">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="224"
-                height="24"
-                viewBox="0 0 74 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-move-right-icon lucide-move-right"
-              >
-                <path d="M68 8L72 12L68 16" />
-                <path d="M2 12H72" />
-              </svg>
-            </span>
-            <span id="view-projects-text">View Projects</span>
+            <span id="view-projects-text">view projects</span>
           </div>
         </a>
       </div>

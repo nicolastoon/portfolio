@@ -1,32 +1,38 @@
-import Button from "./Button.tsx";
-import { House } from "lucide-react";
-import { FolderCode } from "lucide-react";
-
 export default function Navigation() {
-  const menu = [
-    {
-      id: "item-01",
-      icon: () => <House />,
-      action: "#",
-      name: "home",
-    },
-    {
-      id: "item-02",
-      icon: () => <FolderCode />,
-      action: "#/projects",
-      name: "projects",
-    },
-  ];
+  function hover(element: HTMLElement) {
+    element.style.color = "var(--primary-accent-highlight)";
+    element.style.textShadow = "0 0 5px var(--shadow-accent-color)";
+  }
 
-  function createNav() {
-    return menu.map((item) => (
-      <Button key={item.id} icon={item.icon()} action={item.action} name={item.name} />
-    ));
+  function unhover(element: HTMLElement) {
+    element.style.color = "#c4a9a1";
+    element.style.textShadow = "none";
   }
 
   return (
-    <div className="button-panel" id="navigation">
-      {createNav()}
+    <div id="navigation">
+      <a className="navigation-link" href="#/">
+        <div id="homepage-navigation">
+          <span
+            className="navigation-text"
+            onPointerEnter={(e) => hover(e.currentTarget)}
+            onPointerLeave={(e) => unhover(e.currentTarget)}
+          >
+            home
+          </span>
+        </div>
+      </a>
+      <a className="navigation-link" href="#/projects">
+        <div id="projects-navigation">
+          <span
+            className="navigation-text"
+            onPointerEnter={(e) => hover(e.currentTarget)}
+            onPointerLeave={(e) => unhover(e.currentTarget)}
+          >
+            projects
+          </span>
+        </div>
+      </a>
     </div>
   );
 }

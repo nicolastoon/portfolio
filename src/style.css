@@ -1,28 +1,16 @@
 :root {
   color-scheme: light;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-  font-display: swap;
+  --background-color: #f4f3ee;
+  --primary-font-color: #463f3a;
+  --primary-accent-color: #c4a9a1;
+  --primary-accent-highlight: #99786e;
+  --shadow-accent-color: #dccac4;
+  --highlight-color: rgba(196, 169, 161, 0.2);
 }
 
 @font-face {
   font-family: "Figtree";
   src: url("/fonts/Figtree/Figtree-VariableFont_wght.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Fira Sans Regular";
-  src: url("/fonts/Fira_Sans/FiraSans-Regular.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Fira Sans Medium";
-  src: url("/fonts/Fira_Sans/FiraSans-Medium.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -36,8 +24,8 @@
 body {
   font: 110%/1.5 "Figtree", sans-serif;
   margin: 0;
-  background-color: transparent;
-  color: #463f3a;
+  background-color: var(--background-color);
+  color: var(--primary-font-color);
   overflow-y: scroll;
 }
 
@@ -71,8 +59,9 @@ section {
 .panel {
   border-radius: 1em;
   font-family: inherit;
-  /* #BCB8B1 at 40% opacity */
-  background-color: rgba(188, 184, 177, 0.4);
+  /* border: 2px solid var(--primary-accent-color); */
+  background: var(--background-color);
+  box-shadow: 0 0 5px 2px var(--box-shadow-accent-color);
   padding: 1em;
 }
 
@@ -112,7 +101,7 @@ section {
 }
 
 img {
-  box-shadow: 0 0 5px 2px lightgray;
+  box-shadow: 0 0 5px 2px var(--box-shadow-accent-color);
 }
 
 #avatar {
@@ -129,20 +118,30 @@ img {
   gap: 1em;
   background: transparent;
   flex-direction: row;
-
-  .lucide {
-    padding: 0.5em;
-    stroke: #463f3a;
-  }
 }
 
 #navigation {
   position: sticky;
+  display: flex;
   flex-direction: column;
-  z-index: 2;
+  font: 120%/1.5 "Figtree", sans-serif;
+  z-index: 998;
+  gap: 0.5em;
   top: 1em;
   left: 1em;
+  background: transparent;
   width: fit-content;
+}
+
+.navigation-link {
+  text-decoration: none;
+}
+
+.navigation-text {
+  font: inherit;
+  text-decoration: none;
+  color: var(--primary-accent-color);
+  transition: all 0.2s ease;
 }
 
 .link {
@@ -151,48 +150,34 @@ img {
   margin: 0;
   padding: 0;
   justify-content: center;
-  border: 2px solid #463f3a;
+  border: 2px solid var(--primary-accent-color);
   background-color: transparent;
   border-radius: 24px;
   min-width: 40px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
+
+  .lucide {
+    padding: 0.5em;
+    stroke: var(--primary-accent-color);
+    transition: all 0.2s ease;
+  }
 }
 
-.button-label {
-  position: absolute;
-  display: none;
-  left: -600%;
-  opacity: 1;
-  transition: all 0.2s ease-in-out;
-  align-self: center;
-  padding: 0.5em 0.5em 0.5em 0;
-}
-
-#creations-button {
+#view-projects-button {
   position: relative;
   min-width: 8em;
-  padding: 0.5em 0;
+  padding: 0.5em 0.25em;
   align-self: center;
-}
-
-#view-projects-arrow {
-  position: absolute;
-  left: -110%;
-  transition: all 0.5s ease;
-  text-decoration: none;
-  color: #463f3a;
 }
 
 #view-projects-text {
-  font-family: "Inter Tight", sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
+  font: inherit;
   align-self: center;
   transition: all 0.5s ease;
   text-decoration: none;
-  color: #463f3a;
+  color: var(--primary-accent-color);
 }
 
 #about-sections {
@@ -216,8 +201,8 @@ img {
 
 .about-img-container {
   display: grid;
-  grid-template-columns: repeat(8,1fr);
-  grid-template-rows: repeat(6,1fr);
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   position: relative;
   max-width: 30vw;
 }
@@ -369,7 +354,7 @@ h2 {
   width: fit-content;
   height: fit-content;
   margin: 20vh auto;
-  opacity: 0.7;
+  color: var(--primary-accent-color);
 }
 
 #projects {
@@ -377,7 +362,7 @@ h2 {
 }
 
 .section-title {
-  font-family: "Inter";
+  font-family: "Inter Tight";
   font-weight: 800;
   text-align: center;
   font-size: 2rem;
@@ -399,7 +384,7 @@ h2 {
 
 .project-name {
   width: 100%;
-  font-family: "Inter";
+  font-family: "Inter Tight";
   text-align: left;
   font-size: 2rem;
   font-weight: 600;
@@ -410,19 +395,20 @@ h2 {
 
 .project-name.focused {
   opacity: 1;
-  transform: translateX(2rem);
+  /* transform: translateX(2rem); */
 }
 
 #product-link:hover {
   cursor: pointer;
   transform: translateX(-5.2rem);
-  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease;
 }
 
 #project-info-container {
-  display: block;
+  display: flex;
   flex-direction: column;
-  align-self: center;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   height: 60vh;
 }
@@ -436,7 +422,6 @@ h2 {
   object-fit: cover;
   border-radius: 1em;
   z-index: 2;
-  border: 1.5px solid black;
   transition: all 0.25s ease-out;
 }
 
@@ -479,9 +464,10 @@ h2 {
   display: inline-flex;
   gap: 0.3em;
   align-items: center;
-  background-color: #9fbbe0;
+  background-color: var(--highlight-color);
   padding: 0.1em 0.6em;
   border-radius: 0.5em;
+  border: 1px solid transparent;
   font-size: 0.8rem;
   height: 24px;
 }
@@ -498,7 +484,7 @@ h2 {
     rgba(254, 170, 212, 1) 99.9%
   );
   pointer-events: auto;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease;
 
   .lucide {
     stroke-width: 3px;
@@ -506,44 +492,40 @@ h2 {
   }
 }
 
-#project-info-tags .project-info-tag.special:hover {
-  transform: translateY(-0.5em);
-}
-
 #project-info-description {
   display: block;
   font-size: 1rem;
 }
 
-#source-code {
-  display: block;
-  width: 4rem;
-  position: relative;
-  left: 80%;
-  top: 5rem;
-  transition: transform 0.3s ease-out;
-}
-
-#source-code.active {
-  top: 2.7rem;
-  cursor: pointer;
-}
-
-#source-code:hover {
-  transform: translateY(-10%);
+#project-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #project-info-link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+  padding: 1em 0;
   width: fit-content;
 
-  svg {
-    padding: 1em 0 1em 0;
+  #visit-text {
+    color: var(--primary-accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 1s ease;
   }
 
-  path {
-    stroke-width: 2px;
+  .arrow-part {
+    stroke: var(--primary-accent-color);
+    stroke-width: 1.5px;
     transition: all 1s cubic-bezier(0.43, 0.47, 0, 1);
   }
+}
+
+#source-code-button {
+  transform: scale(0.75);
 }
