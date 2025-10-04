@@ -1,17 +1,17 @@
 import projects from "../../lib/projects.json";
-import { Calendar, Briefcase, Link, CodeXml } from "lucide-react";
+import { Link, CodeXml } from "lucide-react";
 import { useState } from "react";
 
 type ProjectObject = {
   title: string;
   image: string;
   year: string;
-  org: string;
   tags: string[];
   link: string;
   sourceCode: string;
   specialLink: string;
   description: string;
+  comments: string;
 };
 
 export default function Projects() {
@@ -195,16 +195,18 @@ export default function Projects() {
                 )}
               </div>
               <span className="project-info-year project-details">
-                <Calendar />
                 {projects[selectedIndex].year}
               </span>
-              <span className="project-info-org project-details">
-                <Briefcase />
-                {projects[selectedIndex].org}
-              </span>
-              <div className="project-info-description">
-                {projects[selectedIndex].description}
-              </div>
+              {projects[selectedIndex].comments ? (
+                <span className="project-info-comments project-details">
+                  {projects[selectedIndex].comments}
+                </span>
+              ) : null}
+              <p className="project-info-description">
+                {projects[selectedIndex].description
+                  ? projects[selectedIndex].description
+                  : null}
+              </p>
               <div className="project-links">
                 {projects[selectedIndex].link ? ProjectLinkArrow() : null}
                 {projects[selectedIndex].sourceCode
@@ -228,15 +230,13 @@ export default function Projects() {
         >
           <div className="project-name mobile-project-name">{p.title}</div>
           <div className="project-info-tags">{generateTags(p.tags, p)}</div>
-          <span className="project-info-year project-details">
-            <Calendar />
-            {p.year}
-          </span>
-          <span className="project-info-org project-details">
-            <Briefcase />
-            {p.org}
-          </span>
-          <div className="project-info-description">{p.description}</div>
+          <span className="project-info-year project-details">{p.year}</span>
+          {p.comments ? (
+            <span className="project-info-comments project-details">
+              {p.comments}
+            </span>
+          ) : null}
+          <p className="project-info-description">{p.description}</p>
           <div className="project-links">
             {p.link ? ProjectLinkArrow(true) : null}
             {p.sourceCode ? SourceCode(p.sourceCode, true) : null}

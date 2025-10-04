@@ -444,20 +444,16 @@ h2 {
   gap: 0.5em;
   justify-content: space-around;
   font-family: inherit;
+}
 
-  .project-details {
-    display: inline-flex;
-    gap: 0.5em;
-    font-size: 0.8rem;
-    font-weight: 400;
-    align-items: center;
-    pointer-events: none;
-
-    .lucide {
-      stroke-width: 1.7px;
-      width: 1.2rem;
-    }
-  }
+.project-details {
+  display: inline-flex;
+  gap: 0.5em;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-weight: 400;
+  align-items: center;
+  pointer-events: none;
 }
 
 .project-info:hover {
@@ -504,9 +500,14 @@ h2 {
 }
 
 .project-info-description {
-  display: block;
+  margin: 0;
   font-size: 1rem;
 }
+
+/* .project-info-comments {
+  font-size: 0.8rem;
+  opacity: 0.7;
+} */
 
 .project-links {
   display: flex;
