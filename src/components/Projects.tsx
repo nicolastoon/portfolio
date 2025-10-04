@@ -31,8 +31,7 @@ export default function Projects() {
             if (isSpecial) {
               const tag = e.currentTarget;
               resetArrow();
-              tag.style.boxShadow =
-                "0 0 5px 2px var(--shadow-accent-color)";
+              tag.style.boxShadow = "0 0 5px 2px var(--shadow-accent-color)";
               tag.style.border = "1px solid var(--primary-font-color)";
             }
           }}
@@ -68,66 +67,79 @@ export default function Projects() {
     ));
   }
 
-  function ProjectLinkArrow() {
+  function ProjectLinkArrow(isMobile: boolean = false) {
     return (
-      <div id="project-info-link">
-        <span id="visit-text">visit</span>
+      <div className="project-info-link">
+        <span className="visit-text" id={isMobile ? "" : "desktop-visit-text"}>
+          visit
+        </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="200"
+          width="40"
           height="24"
-          viewBox="0 0 200 24"
+          viewBox="0 0 40 24"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
           className="lucide lucide-move-right-icon lucide-move-right"
           id="project-info-link-arrow"
         >
-          <path className="arrow-part" id="arrow-head" d="M7 8L11 12L7 16" />
-          <path className="arrow-part" id="arrow-line" d="M0 12H10" />
+          <path
+            className="arrow-part"
+            id={isMobile ? "" : "desktop-arrow-head"}
+            d="M7 8L11 12L7 16"
+          />
+          <path
+            className="arrow-part"
+            id={isMobile ? "" : "desktop-arrow-line"}
+            d="M0 12H10"
+          />
         </svg>
       </div>
     );
   }
 
   function animateArrow() {
-    const arrowLine = document.getElementById("arrow-line");
-    const arrowHead = document.getElementById("arrow-head");
+    const arrowLine = document.getElementById("desktop-arrow-line");
+    const arrowHead = document.getElementById("desktop-arrow-head");
     if (arrowLine && arrowHead) {
       arrowLine.style.transform = "scaleX(3)";
       arrowHead.style.transform = "translateX(21px)";
       arrowLine.style.stroke = "var(--primary-accent-highlight)";
       arrowHead.style.stroke = "var(--primary-accent-highlight)";
     }
-    const text = document.getElementById("visit-text");
+    const text = document.getElementById("desktop-visit-text");
     if (text) {
       text.style.color = "var(--primary-accent-highlight)";
     }
   }
 
   function resetArrow() {
-    const arrowLine = document.getElementById("arrow-line");
-    const arrowHead = document.getElementById("arrow-head");
+    const arrowLine = document.getElementById("desktop-arrow-line");
+    const arrowHead = document.getElementById("desktop-arrow-head");
     if (arrowLine && arrowHead) {
       arrowLine.style.transform = "scaleX(1)";
       arrowLine.style.stroke = "var(--primary-accent-color)";
       arrowHead.style.transform = "translateX(0)";
       arrowHead.style.stroke = "var(--primary-accent-color)";
     }
-    const text = document.getElementById("visit-text");
+    const text = document.getElementById("desktop-visit-text");
     if (text) {
       text.style.color = "var(--primary-accent-color)";
     }
   }
 
-  function SourceCode(sourceCodeLink: string) {
+  function SourceCode(sourceCodeLink: string, isMobile: boolean = false) {
     return (
       <div
-        className="link"
-        id="source-code-button"
+        className="link source-code-button"
         onClick={() => window.open(sourceCodeLink, "_blank")}
-        onPointerEnter={(e) => sourceCodeHover(e.currentTarget)}
-        onPointerLeave={(e) => sourceCodeUnhover(e.currentTarget)}
+        onPointerEnter={(e) =>
+          isMobile ? null : sourceCodeHover(e.currentTarget)
+        }
+        onPointerLeave={(e) =>
+          isMobile ? null : sourceCodeUnhover(e.currentTarget)
+        }
       >
         <CodeXml />
       </div>
@@ -158,6 +170,82 @@ export default function Projects() {
     animateArrow();
   }
 
+  function generateDesktopProjects() {
+    return (
+      <>
+        <div id="project-names">{generateProjectNames()}</div>
+        <div id="project-info-scroll-container">
+          <div className="project-info-container">
+            <img
+              className="project-info-img"
+              src={projects[selectedIndex].image}
+            />
+            <div
+              className="project-info"
+              onPointerEnter={animateArrow}
+              onPointerLeave={resetArrow}
+              onClick={() =>
+                window.open(projects[selectedIndex].link, "_blank")
+              }
+            >
+              <div className="project-info-tags">
+                {generateTags(
+                  projects[selectedIndex].tags,
+                  projects[selectedIndex]
+                )}
+              </div>
+              <span className="project-info-year project-details">
+                <Calendar />
+                {projects[selectedIndex].year}
+              </span>
+              <span className="project-info-org project-details">
+                <Briefcase />
+                {projects[selectedIndex].org}
+              </span>
+              <div className="project-info-description">
+                {projects[selectedIndex].description}
+              </div>
+              <div className="project-links">
+                {projects[selectedIndex].link ? ProjectLinkArrow() : null}
+                {projects[selectedIndex].sourceCode
+                  ? SourceCode(projects[selectedIndex].sourceCode)
+                  : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  function generateMobileProjects() {
+    return projects.map((p, index) => (
+      <div key={`project-${index}`} className="project-info-container">
+        <img className="project-info-img" src={p.image} />
+        <div
+          className="project-info"
+          onClick={() => window.open(p.link, "_blank")}
+        >
+          <div className="project-name mobile-project-name">{p.title}</div>
+          <div className="project-info-tags">{generateTags(p.tags, p)}</div>
+          <span className="project-info-year project-details">
+            <Calendar />
+            {p.year}
+          </span>
+          <span className="project-info-org project-details">
+            <Briefcase />
+            {p.org}
+          </span>
+          <div className="project-info-description">{p.description}</div>
+          <div className="project-links">
+            {p.link ? ProjectLinkArrow(true) : null}
+            {p.sourceCode ? SourceCode(p.sourceCode, true) : null}
+          </div>
+        </div>
+      </div>
+    ));
+  }
+
   let [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
@@ -165,45 +253,8 @@ export default function Projects() {
       <h2 className="section-title" id="projects-title">
         Building...
       </h2>
-      <div id="projects-container">
-        <div id="project-names">{generateProjectNames()}</div>
-        <div id="project-info-container">
-          <img id="project-info-img" src={projects[selectedIndex].image} />
-          <div
-            className="panel"
-            id="project-info"
-            onPointerEnter={animateArrow}
-            onPointerLeave={resetArrow}
-            onClick={() => window.open(projects[selectedIndex].link, "_blank")}
-          >
-            <div id="project-info-tags">
-              {generateTags(
-                projects[selectedIndex].tags,
-                projects[selectedIndex]
-              )}
-            </div>
-            <span id="project-info-year">
-              <Calendar />
-              {projects[selectedIndex].year}
-            </span>
-            <span id="project-info-org">
-              <Briefcase />
-              {projects[selectedIndex].org}
-            </span>
-            <div id="project-info-description">
-              {projects[selectedIndex].description}
-            </div>
-            <div id="project-links">
-              {projects[selectedIndex].link
-                ? ProjectLinkArrow()
-                : null}
-              {projects[selectedIndex].sourceCode
-                ? SourceCode(projects[selectedIndex].sourceCode)
-                : null}
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="projects-container">{generateDesktopProjects()}</div>
+      <div id="mobile-projects-container">{generateMobileProjects()}</div>
     </section>
   );
 }
