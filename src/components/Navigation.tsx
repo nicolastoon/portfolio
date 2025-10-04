@@ -10,7 +10,7 @@ export default function Navigation() {
   }
 
   return (
-    <div id="navigation">
+    <nav id="navigation">
       <a className="navigation-link" href="#/">
         <div id="homepage-navigation">
           <span
@@ -33,6 +33,6 @@ export default function Navigation() {
           </span>
         </div>
       </a>
-    </div>
+    </nav>
   );
 }

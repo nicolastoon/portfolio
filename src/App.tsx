@@ -1,4 +1,5 @@
 import Background from "./components/Background.tsx";
+import Footer from "./components/Footer.tsx";
 import About from "./components/About.tsx";
 import Projects from "./components/Projects.tsx";
 import Navigation from "./components/Navigation.tsx";
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/projects" element={<Projects />}></Route>
         </Routes>
       </HashRouter>
+      <Footer />
     </>
   );
 }
