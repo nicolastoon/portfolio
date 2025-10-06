@@ -21,7 +21,7 @@
     "sourceCode": "",
     "specialLink": "",
     "description": "A React application built for a local creative mind, showcasing their collection of handmade origami flowers.", 
-    "comments": "Built using React / TypeScript."
+    "comments": "Designed using Figma, built with React / TypeScript."
   },
   {
     "title": "Portfolio v1",
@@ -32,7 +32,7 @@
     "sourceCode": "https://github.com/nicolastoon/portfolio",
     "specialLink": "",
     "description": "The website you are currently on! Built to showcase my projects and my playground for frontend development. Designed to also be compatible on mobile devices! (I hope)",
-    "comments": "Built using React / TypeScript."
+    "comments": "Built with React / TypeScript."
   },
   {
     "title": "Stage Left: Typing with Parkinson's",
@@ -43,7 +43,7 @@
     "sourceCode": "https://github.com/simonerao/Parkinsons_Disease",
     "specialLink": "https://dsc-courses.github.io/dsc106-2025-sp/showcase/",
     "description": "My team's final project for DSC 106: Data Visualization, where we set off to tell a story about the effects of Parkinson's Disease using interactive visualizations! I created two interactive games, one where the user races against a simulation modeled with Parkinson's, and one where the user is digitally constrained to typing at the same speed as the modeled simulation with Parkinson's.",
-    "comments": "Visualizations designed using D3 / Three."
+    "comments": "Visualizations prepared using D3 / Three."
   },
   {
     "title": "Classifying Benign and Malignant Tumors",
@@ -54,7 +54,7 @@
     "sourceCode": "",
     "specialLink": "",
     "description": "From January to June 2025, I led a group of two researchers to investigate the best architecture of model to use to classify breast tumor micrographs. I built my own U-Net architecture model and quantitatively compared it to a Vision Transformer, built from scratch using PyTorch, and ResNet18, a pretrained model we knew would do well.",
-    "comments": "Models built using PyTorch."
+    "comments": "Built with PyTorch."
   },
   {
     "title": "Bikewatching in Boston",
@@ -65,7 +65,7 @@
     "sourceCode": "https://github.com/nicolastoon/bikewatching",
     "specialLink": "",
     "description": "For DSC 106: Data Visualization, I created a dynamic webpage that visualizes bike traffic in the city of Boston.",
-    "comments": "Designed using JavaScript."
+    "comments": "Built with JavaScript."
   },
   {
     "title": "Recipe Representation",
@@ -76,6 +76,6 @@
     "sourceCode": "",
     "specialLink": "",
     "description": "For DSC 80: Practice of Data Science, I researched if online recipe tags accurately described the recipe. I explored the data, analyzed distributions and hypotheses, and ultimately trained a random forest classifier to analyze the representation of a chosen tag.",
-    "comments": "Analysis done using Python libraries."
+    "comments": "Analyzed with various Python libraries."
   }
 ]

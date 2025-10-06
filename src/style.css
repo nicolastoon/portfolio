@@ -1,5 +1,4 @@
 :root {
-  color-scheme: light;
   --background-color: #f4f3ee;
   --primary-font-color: #463f3a;
   --primary-accent-color: #c4a9a1;
@@ -26,7 +25,7 @@ body {
   margin: 0;
   background-color: var(--background-color);
   color: var(--primary-font-color);
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #tsparticles {
@@ -51,6 +50,7 @@ section {
   display: inline-flex;
   padding: 0 15vw;
   width: 70vw;
+  max-width: 100%;
 }
 
 #front-page {
