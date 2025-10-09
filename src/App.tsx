@@ -3,7 +3,7 @@ import Footer from "./components/Footer.tsx";
 import About from "./components/About.tsx";
 import Projects from "./components/Projects.tsx";
 import Navigation from "./components/Navigation.tsx";
-import ScrollWrapper from "./components/ScrollWrapper.tsx";
+import ScrollReset from "./components/ScrollReset.tsx";
 import { Routes, Route, HashRouter } from "react-router-dom";
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
       <Background />
       <Navigation />
       <HashRouter>
-        <ScrollWrapper />
+        <ScrollReset />
         <Routes>
           <Route path="/" element={<About />}></Route>
           <Route path="/projects" element={<Projects />}></Route>

@@ -3,15 +3,15 @@ import { Link, CodeXml } from "lucide-react";
 import { useState } from "react";
 
 type ProjectObject = {
-  title: string;
-  image: string;
-  year: string;
-  tags: string[];
-  link: string;
-  sourceCode: string;
-  specialLink: string;
-  description: string;
-  comments: string;
+  title: string,
+  image: string,
+  year: string,
+  tags: string[],
+  link: string,
+  sourceCode: string,
+  specialLink: string,
+  description: string,
+  comments: string,
 };
 
 export default function Projects() {
