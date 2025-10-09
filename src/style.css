@@ -49,7 +49,7 @@ body {
 section {
   display: inline-flex;
   padding: 0 15vw;
-  max-width: 100%;
+  width: 70vw;
 }
 
 #front-page {
