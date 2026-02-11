@@ -6,17 +6,17 @@ export default function Code() {
           <img
             className="about-img code-img"
             id="data-cleaning-img"
-            src="/portfolio/images/data-cleaning.webp"
+            src="./images/data-cleaning.webp"
           />
           <img
             className="about-img code-img"
             id="sql-img"
-            src="/portfolio/images/sql.webp"
+            src="./images/sql.webp"
           />
           <img
             className="about-img code-img"
             id="portfolio-code-img"
-            src="/portfolio/images/portfolio-code.webp"
+            src="./images/portfolio-code.webp"
           />
         </div>
         <div className="about-blurb" id="code-blurb">

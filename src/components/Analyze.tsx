@@ -6,17 +6,17 @@ export default function Analyze() {
           <img
             className="about-img analyze-img"
             id="hypothesis-test-img"
-            src="/portfolio/images/hypothesis-test.webp"
+            src="./images/hypothesis-test.webp"
           />
           <img
             className="about-img analyze-img"
             id="basketball-analysis-img"
-            src="/portfolio/images/basketball-analysis.webp"
+            src="./images/basketball-analysis.webp"
           />
           <img
             className="about-img analyze-img"
             id="excel-img"
-            src="/portfolio/images/excel.webp"
+            src="./images/excel.webp"
           />
         </div>
         <div className="about-blurb" id="analyze-blurb">

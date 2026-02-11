@@ -82,5 +82,9 @@
     { 
         "item": "Git", 
         "icon": "https://cdn.simpleicons.org/git/F05032" 
+    },
+    {
+        "item": "Docker",
+        "icon": "https://cdn.simpleicons.org/docker/2496ED" 
     }
 ]

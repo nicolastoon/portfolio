@@ -6,7 +6,7 @@ export default function FrontPage() {
       <div id="header">
         <img
           id="avatar"
-          src="/portfolio/images/moi.webp"
+          src="./images/moi.webp"
           alt="picture of me!"
           width="100%"
         />

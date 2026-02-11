@@ -17,12 +17,12 @@ export default function Design() {
           <img
             className="about-img design-img"
             id="figma-img"
-            src="/portfolio/images/figma.webp"
+            src="./images/figma.webp"
           />
           <img
             className="about-img design-img"
             id="typing-test-img"
-            src="/portfolio/images/typing-test.webp"
+            src="./images/typing-test.webp"
           />
         </div>
       </div>

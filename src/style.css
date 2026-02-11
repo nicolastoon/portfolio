@@ -334,7 +334,7 @@ h2 {
 
 .techstack-slider {
   display: inline-flex;
-  animation: 10s slide linear infinite;
+  animation: 30s slide linear infinite;
   height: fit-content;
   align-items: center;
 }
@@ -542,12 +542,13 @@ h2 {
 
 #footer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   justify-items: center;
   align-items: center;
-  width: 5em;
+  width: fit-content;
   height: 5vh;
+  gap: 0.25em;
   padding: 1em;
   margin: auto;
 
