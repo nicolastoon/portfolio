@@ -33,7 +33,7 @@
     },
     {
         "item": "Dask",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Dask_Logo.svg/768px-Dask_Logo.svg.png?20220607214158"
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/1/12/Dask_Logo.svg"
     },
     { 
         "item": "NumPy", 

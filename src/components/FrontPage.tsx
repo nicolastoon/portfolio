@@ -6,14 +6,14 @@ export default function FrontPage() {
       <div id="header">
         <img
           id="avatar"
-          src="./images/moi.webp"
+          src="./images/moi2_cropped.JPG"
           alt="picture of me!"
           width="100%"
         />
         <div id="name-container">
           <h1 id="fullname">Nicolas Toon</h1>
           <span className="title">
-            FULL STACK DEVELOPER // MACHINE LEARNING ENGINEER
+            PERCEPTION ENGINEER // SOFTWARE ARCHITECT
           </span>
           <Links />
         </div>
